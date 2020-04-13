@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   <item
+       type="id"
+       name="usernameEdit"/>
+    <item
+        type="id"
+        name="passwordEdit"/>
+    <item
+        type="id"
+        name="registerButton" />
+    <item
+        type="id"
+        name="loginButton"/>
+    <item
+        type="id"
+        name="collegeLogo"/>
+
+    <item
+        type="id"
+        name="homeList"
+        />
+
+    <item
+        type="id"
+        name="optionTitle"
+        />
+
+    <item
+        type="id"
+        name="optionCard"
+        />
+
+   <item
+        type="id"
+        name="optionImage"
+    />
+
+    <item
+         type="id"
+         name="homeLogo"
+     />
+
+    <item
+         type="id"
+         name="greetingText"
+     />
+</resources>

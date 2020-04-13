@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:paddingTop="15dp">
+
+    <ImageView
+        android:id="@id/homeLogo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/logo"
+        android:contentDescription="@string/logo_desc"
+        android:layout_centerHorizontal="true"/>
+
+    <!-- Dummy TextView to fill some space -->
+    <TextView
+        android:id="@+id/dummy"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/homeLogo"
+        android:text=""/>
+
+    <TextView
+        android:id="@id/greetingText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dummy"
+        android:text="@string/welcome_text"
+        android:layout_centerHorizontal="true"/>
+
+    <ListView
+        android:id="@id/homeList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/greetingText"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:footerDividersEnabled="false"
+        android:headerDividersEnabled="false"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:layout_centerHorizontal="true">
+    </ListView>
+</RelativeLayout>
