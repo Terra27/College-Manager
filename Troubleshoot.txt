@@ -1,5 +1,5 @@
 When checking out the project using version control in Android Studio 3.6 or higher, an error pops up saying
-"Unsupported Module Detected." once the import if completed. This is a bug with either Github or with Android Studio, 
+"Unsupported Module Detected." once the import is completed. This is a bug with either Github or with Android Studio, 
 regardless, in order to solve this, follow the following 3 steps:
 1. Go to File->Sync Project with Gradle files. Wait for completion. 
 2. Then, Go to Build->Clean Project.
