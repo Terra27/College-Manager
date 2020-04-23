@@ -9,9 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <activity
+            android:name=".assignment.Assignment"
+            android:theme="@style/CustomTheme">
+        </activity>
+
         <activity
             android:name=".home.Home"
-            android:theme="@style/LoginTheme">
+            android:theme="@style/CustomTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,15 +25,6 @@
             </intent-filter>
         </activity>
 
-        <!-- <activity
-            android:name=".MainActivity"
-            android:theme="@style/LoginTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity> -->
     </application>
 
 </manifest>

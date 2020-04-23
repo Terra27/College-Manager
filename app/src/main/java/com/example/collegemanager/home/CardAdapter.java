@@ -1,6 +1,7 @@
 package com.example.collegemanager.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +11,10 @@ import android.widget.TextView;
 
 // Testing direct Git Integration from Android Studio
 
+import androidx.cardview.widget.CardView;
+
 import com.example.collegemanager.R;
+import com.example.collegemanager.assignment.Assignment;
 
 import java.util.ArrayList;
 
@@ -23,7 +27,7 @@ public class CardAdapter extends ArrayAdapter<HomeOptions> {
     public View getView(int position, View convertView, ViewGroup parent) {
 
        // Get a reference to the HomeOptions object in the ArrayList at position.
-        HomeOptions option = getItem(position);
+        final HomeOptions option = getItem(position);
 
         // Inflate the Layout specified in option_card.xml to memory, the root element of the layout is returned.
         if ( convertView == null )
@@ -35,6 +39,18 @@ public class CardAdapter extends ArrayAdapter<HomeOptions> {
 
         ImageView optionImage = (ImageView)convertView.findViewById(R.id.optionImage);
         optionImage.setImageResource(option.optionPicture);
+
+        // Add a listener to the card within the list entry.
+        CardView optionCard = (CardView)convertView.findViewById(R.id.optionCard);
+        optionCard.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View clickedCard) {
+                if ( option.optionID == 4 ) {
+                    Intent assignment = new Intent(getContext(), Assignment.class);
+                    getContext().startActivity(assignment);
+                }
+           }
+        });
 
         return convertView;
     }

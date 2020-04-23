@@ -45,4 +45,24 @@
          type="id"
          name="greetingText"
      />
+
+     <!-- Assignment Option -->
+     <item
+         type="id"
+         name="assignChoice"
+     />
+
+      <item
+         type="id"
+         name="assignGuide"
+         />
+      <item
+          type="id"
+          name="pendingButton"
+          />
+      <item
+          type="id"
+          name="submitButton"
+          />
+
 </resources>

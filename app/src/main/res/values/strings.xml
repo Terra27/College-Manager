@@ -1,9 +1,17 @@
 <resources>
+    <!-- Login Screen -->
     <string name="app_name">College Manager</string>
     <string name="logo_desc">College Logo</string>
     <string name="edit_username">Username</string>
     <string name="edit_password">Password</string>
     <string name="button_login">Login</string>
     <string name="button_register">Register</string>
+
+    <!-- Home screen -->
     <string name="welcome_text">Institute of Engineering and Technology</string>
+
+    <!-- Assignment Screen -->
+    <string name="assign_text">Which assignments would your like to view?</string>
+    <string name="pending_button">Pending Assignments</string>
+    <string name="submit_button">Submitted Assignments</string>
 </resources>

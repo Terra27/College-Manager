@@ -14,7 +14,7 @@
 
     <!-- Dummy TextView to fill some space -->
     <TextView
-        android:id="@+id/dummy"
+        android:id="@+id/dummyHome"
         android:layout_width="match_parent"
         android:layout_height="10dp"
         android:layout_centerHorizontal="true"
@@ -25,7 +25,7 @@
         android:id="@id/greetingText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/dummy"
+        android:layout_below="@id/dummyHome"
         android:text="@string/welcome_text"
         android:layout_centerHorizontal="true"/>
 
