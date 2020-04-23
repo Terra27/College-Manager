@@ -16,6 +16,12 @@
         </activity>
 
         <activity
+            android:name=".assignment.pending.Pending"
+            android:theme="@style/CustomTheme">
+
+        </activity>
+
+        <activity
             android:name=".home.Home"
             android:theme="@style/CustomTheme">
             <intent-filter>
@@ -24,7 +30,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

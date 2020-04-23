@@ -46,7 +46,7 @@
          name="greetingText"
      />
 
-     <!-- Assignment Option -->
+     <!-- Assignment Window -->
      <item
          type="id"
          name="assignChoice"
@@ -65,4 +65,46 @@
           name="submitButton"
           />
 
+     <!-- Pending Assignment Window -->
+     <item
+         type="id"
+         name="pendingLogo"
+         />
+
+     <item
+         type="id"
+         name="pendingText"
+         />
+     <item
+         type="id"
+         name="pendingList"
+         />
+
+    <!-- Pending Assignment List -->
+     <item
+         type="id"
+         name="itemPending"
+         />
+
+     <item
+         type="id"
+         name="subjectImage"
+         />
+     <item
+         type="id"
+         name="itemTitle"
+         />
+     <item
+         type="id"
+         name="itemProfessor"
+         />
+
+     <item
+         type="id"
+         name="itemDueDate"
+         />
+     <item
+         type="id"
+         name="downloadImage"
+         />
 </resources>

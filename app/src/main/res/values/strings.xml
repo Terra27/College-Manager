@@ -14,4 +14,7 @@
     <string name="assign_text">Which assignments would your like to view?</string>
     <string name="pending_button">Pending Assignments</string>
     <string name="submit_button">Submitted Assignments</string>
+
+    <!-- Pending Assignment Screen -->
+    <string name="welcome_pending">The following assignments are pending, long press on one of the assignments to upload it\'s solution.</string>
 </resources>

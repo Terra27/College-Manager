@@ -5,27 +5,28 @@
     android:paddingTop="15dp">
 
     <ImageView
-        android:id="@id/homeLogo"
+        android:id="@id/pendingLogo"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:src="@drawable/logo"
-        android:contentDescription="@string/logo_desc"
+        android:src="@drawable/assignchoice"
+        android:contentDescription="Pending Assignment Logo"
         android:layout_centerHorizontal="true"/>
 
     <TextView
-        android:id="@id/greetingText"
-        android:layout_width="wrap_content"
+        android:id="@id/pendingText"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/homeLogo"
-        android:paddingTop="10dp"
-        android:text="@string/welcome_text"
+        android:layout_below="@id/pendingLogo"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/welcome_pending"
         android:layout_centerHorizontal="true"/>
 
     <ListView
-        android:id="@id/homeList"
+        android:id="@id/pendingList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/greetingText"
+        android:layout_below="@id/pendingText"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
         android:paddingTop="16dp"
