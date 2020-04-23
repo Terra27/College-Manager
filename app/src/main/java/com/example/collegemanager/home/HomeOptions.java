@@ -1,7 +1,6 @@
-package com.example.collegemanager;
+package com.example.collegemanager.home;
 
-import android.graphics.drawable.Drawable;
-
+// This is a class that defines each Option in the Home Window.
 public class HomeOptions {
     String optionTitle;
     int optionPicture;

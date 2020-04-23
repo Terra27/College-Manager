@@ -1,19 +1,16 @@
-package com.example.collegemanager;
+package com.example.collegemanager.home;
 
 import android.content.Context;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 // Testing direct Git Integration from Android Studio
+
+import com.example.collegemanager.R;
 
 import java.util.ArrayList;
 
@@ -22,12 +19,17 @@ public class CardAdapter extends ArrayAdapter<HomeOptions> {
         super(context, 0, homeOptions);
     }
 
+    // Override the getView() method in the superclass to modify the View returned for each Array object.
     public View getView(int position, View convertView, ViewGroup parent) {
 
+       // Get a reference to the HomeOptions object in the ArrayList at position.
         HomeOptions option = getItem(position);
+
+        // Inflate the Layout specified in option_card.xml to memory, the root element of the layout is returned.
         if ( convertView == null )
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.option_card, parent, false);
 
+        // Set the values for the TextView and ImageView in the inflated Layout using the data in the object.
         TextView optionText = (TextView)convertView.findViewById(R.id.optionTitle);
         optionText.setText(option.optionTitle);
 
