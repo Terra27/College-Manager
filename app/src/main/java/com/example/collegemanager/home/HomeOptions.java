@@ -5,9 +5,16 @@ public class HomeOptions {
     int optionID;
     String optionTitle;
     int optionPicture;
-    public HomeOptions(int id, String title, int src) {
+    Home.ClickListener optionListener;
+
+    public HomeOptions(int id, String title, int src, Home.ClickListener listener) {
         optionID = id;
         optionTitle = title;
         optionPicture = src;
+        optionListener = listener;
+    }
+
+    public Home.ClickListener getOptionListener() {
+        return optionListener;
     }
 }

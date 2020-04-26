@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 // Testing direct Git Integration from Android Studio
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import com.example.collegemanager.R;
@@ -19,7 +20,8 @@ import com.example.collegemanager.assignment.Assignment;
 import java.util.ArrayList;
 
 public class CardAdapter extends ArrayAdapter<HomeOptions> {
-   public CardAdapter(Context context, ArrayList<HomeOptions> homeOptions) {
+
+    public CardAdapter(Context context, ArrayList<HomeOptions> homeOptions) {
         super(context, 0, homeOptions);
     }
 
@@ -42,15 +44,7 @@ public class CardAdapter extends ArrayAdapter<HomeOptions> {
 
         // Add a listener to the card within the list entry.
         CardView optionCard = (CardView)convertView.findViewById(R.id.optionCard);
-        optionCard.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View clickedCard) {
-                if ( option.optionID == 4 ) {
-                    Intent assignment = new Intent(getContext(), Assignment.class);
-                    getContext().startActivity(assignment);
-                }
-           }
-        });
+        optionCard.setOnClickListener(option.getOptionListener());
 
         return convertView;
     }
