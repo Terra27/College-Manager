@@ -25,31 +25,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".home.Home"
-            android:theme="@style/CustomTheme">
-        </activity>
-
+            android:theme="@style/CustomTheme"></activity>
         <activity
             android:name=".assignment.Assignment"
             android:theme="@style/CustomTheme" />
-
         <activity
             android:name=".assignment.pending.Pending"
-            android:theme="@style/CustomTheme">
-        </activity>
+            android:theme="@style/CustomTheme"></activity>
 
         <service
             android:name=".UploadStarter"
-            android:exported="false"></service>
+            android:exported="false" />
         <service
             android:name=".NotificationChannelRegister"
             android:exported="false" />
         <service
             android:name=".DownloadStarter"
             android:exported="false" />
-
     </application>
 
 </manifest>
