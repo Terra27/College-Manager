@@ -34,9 +34,9 @@
         android:layout_below="@id/passwordEdit"
         android:text="@string/button_login"/>
     <Button
-        android:id="@id/registerButton"
+        android:id="@id/forgotButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/button_register"
+        android:text="@string/button_forgot"
         android:layout_below="@id/loginButton"/>
 </RelativeLayout>
