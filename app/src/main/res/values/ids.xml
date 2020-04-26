@@ -8,7 +8,7 @@
         name="passwordEdit"/>
     <item
         type="id"
-        name="registerButton" />
+        name="forgotButton" />
     <item
         type="id"
         name="loginButton"/>
