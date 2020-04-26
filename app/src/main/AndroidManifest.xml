@@ -15,15 +15,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <service
-            android:name=".UploadStarter"
-            android:exported="false"></service>
-        <service
-            android:name=".NotificationChannelRegister"
-            android:exported="false" />
-        <service
-            android:name=".DownloadStarter"
-            android:exported="false" />
 
         <activity
             android:name=".MainActivity"
@@ -48,6 +39,17 @@
             android:name=".assignment.pending.Pending"
             android:theme="@style/CustomTheme">
         </activity>
+
+        <service
+            android:name=".UploadStarter"
+            android:exported="false"></service>
+        <service
+            android:name=".NotificationChannelRegister"
+            android:exported="false" />
+        <service
+            android:name=".DownloadStarter"
+            android:exported="false" />
+
     </application>
 
 </manifest>
