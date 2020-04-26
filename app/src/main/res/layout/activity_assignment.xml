@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="5dp">
+
+    <ImageView
+        android:id="@id/assignChoice"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/assignchoice"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="Assignment Logo"
+        android:layout_above="@id/assignGuide"/>
+
+    <TextView
+        android:id="@id/assignGuide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/assign_text"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"
+        />
+
+    <Button
+        android:id="@id/pendingButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/assignGuide"
+        android:text="@string/pending_button"/>
+    <Button
+        android:id="@id/submitButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pendingButton"
+        android:text="@string/submit_button"
+        />
+
+</RelativeLayout>
