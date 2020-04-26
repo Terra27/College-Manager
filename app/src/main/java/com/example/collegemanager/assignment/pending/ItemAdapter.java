@@ -1,6 +1,7 @@
 package com.example.collegemanager.assignment.pending;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,15 +9,22 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import java.util.ArrayList;
 
+import com.example.collegemanager.DownloadStarter;
 import com.example.collegemanager.R;
+import com.example.collegemanager.UploadStarter;
 
 public class ItemAdapter extends ArrayAdapter<PendingItem> {
-    public ItemAdapter(Context context, ArrayList<PendingItem> itemPending) {
+
+    private Pending.ClickListener parentActivityClickListener;
+
+    public ItemAdapter(Context context, ArrayList<PendingItem> itemPending, Pending.ClickListener listener) {
         super(context, 0, itemPending);
+        parentActivityClickListener = listener;
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -40,14 +48,12 @@ public class ItemAdapter extends ArrayAdapter<PendingItem> {
         itemImage.setImageResource(item.pendingImage);
 
         CardView itemCard = (CardView)convertView.findViewById(R.id.itemPending);
-        itemCard.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View clickedItem) {
 
-                //
-               return true;
-            }
-        });
+        // File Upload
+        itemCard.setOnLongClickListener(parentActivityClickListener);
+
+        // File Download
+        itemCard.setOnClickListener(parentActivityClickListener);
 
         return convertView;
     }
