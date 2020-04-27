@@ -31,5 +31,7 @@ public class MainActivity extends AppCompatActivity {
         // Register Application Notification Channel
         Intent intent = new Intent(getApplicationContext(), NotificationChannelRegister.class);
         startService(intent);
+
+        //HEllo harshal dev . This is secret message
     }
 }
