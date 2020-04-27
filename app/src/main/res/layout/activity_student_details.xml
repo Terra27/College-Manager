@@ -1,0 +1,579 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="15dp">
+
+    <ScrollView
+        android:id="@+id/details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <androidx.cardview.widget.CardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@id/detailsCard"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                card_view:cardCornerRadius="15dp">
+
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:orientation="horizontal"
+                        android:padding="10dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:weightSum="4"
+                            android:orientation="vertical">
+
+                            <!-- Blank TextView for alignment -->
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1">
+
+                            </TextView>
+                            <TextView
+                                android:id="@id/stuName"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:textSize="20dp">
+
+                            </TextView>
+
+                            <TextView
+                                android:id="@id/stuRoll"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:textSize="20dp">
+
+                            </TextView>
+
+                            <!-- Blank TextView for alignment-->
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1">
+
+                            </TextView>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:id="@id/studentImg"
+                            android:layout_width="0dp"
+                            android:layout_gravity="center"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:src="@drawable/imagestudent" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp">
+
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/registration"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="20dp"
+                        android:gravity="center"
+                        android:background="@color/colorPrimary"
+                        android:textAllCaps="true"
+                        android:textStyle="bold">
+
+                    </TextView>
+
+                    <!-- Dummy TextView to fill in some space-->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="10">
+
+                    </TextView>
+
+                    <LinearLayout
+                        android:id="@+id/yearLine"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="3"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/yearOfAdmissionL"
+                            android:paddingRight="5dp"
+                            android:layout_width="0dp"
+                            android:layout_weight="1.5"
+                            android:gravity="left|center"
+                            android:layout_height="wrap_content"
+                            android:textSize="17dp"
+                            android:paddingLeft="20dp">
+
+                        </TextView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/colon"
+                            android:gravity="center"
+                            android:textSize="20dp"
+                            android:textStyle="bold">
+
+                        </TextView>
+                        <TextView
+                            android:id="@+id/yearOfAdmissionR"
+                            android:layout_width="0dp"
+                            android:layout_weight="1.5"
+                            android:layout_height="wrap_content"
+                            android:textSize="17dp"
+                            android:paddingLeft="10dp"
+                            android:gravity="left|center">
+
+                        </TextView>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/course"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="3"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/courseL"
+                            android:paddingRight="5dp"
+                            android:layout_width="0dp"
+                            android:layout_weight="1.5"
+                            android:gravity="left|center"
+                            android:layout_height="wrap_content"
+                            android:textSize="17dp"
+                            android:paddingLeft="20dp">
+
+                        </TextView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/colon"
+                            android:gravity="center"
+                            android:textSize="20dp"
+                            android:textStyle="bold">
+
+                        </TextView>
+                        <TextView
+                            android:id="@+id/courseR"
+                            android:layout_width="0dp"
+                            android:layout_weight="1.5"
+                            android:layout_height="wrap_content"
+                            android:textSize="17dp"
+                            android:paddingLeft="10dp"
+                            android:gravity="left|center">
+
+                        </TextView>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/branch"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="3"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/branchL"
+                            android:paddingRight="5dp"
+                            android:layout_width="0dp"
+                            android:layout_weight="1.5"
+                            android:gravity="left|center"
+                            android:layout_height="wrap_content"
+                            android:textSize="17dp"
+                            android:paddingLeft="20dp">
+
+                        </TextView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/colon"
+                            android:gravity="center"
+                            android:textSize="17dp"
+                            android:textStyle="bold">
+
+                        </TextView>
+                        <TextView
+                            android:id="@+id/branchR"
+                            android:layout_width="0dp"
+                            android:layout_weight="1.5"
+                            android:layout_height="wrap_content"
+                            android:textSize="17dp"
+                            android:paddingLeft="10dp"
+                            android:gravity="left|center">
+
+                        </TextView>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/currentSem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="3"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/currentSemL"
+                            android:paddingRight="5dp"
+                            android:layout_width="0dp"
+                            android:layout_weight="1.5"
+                            android:gravity="left|center"
+                            android:layout_height="wrap_content"
+                            android:textSize="17dp"
+                            android:paddingLeft="20dp">
+
+                        </TextView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/colon"
+                            android:gravity="center"
+                            android:textSize="17dp"
+                            android:textStyle="bold">
+
+                        </TextView>
+                        <TextView
+                            android:id="@+id/currentSemR"
+                            android:layout_width="0dp"
+                            android:layout_weight="1.5"
+                            android:layout_height="wrap_content"
+                            android:textSize="20dp"
+                            android:paddingLeft="10dp"
+                            android:gravity="left|center">
+
+                        </TextView>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/enrollment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="3"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/enrollmentL"
+                            android:paddingRight="5dp"
+                            android:layout_width="0dp"
+                            android:layout_weight="1.5"
+                            android:gravity="left|center"
+                            android:layout_height="wrap_content"
+                            android:textSize="17dp"
+                            android:paddingLeft="20dp">
+
+                        </TextView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/colon"
+                            android:gravity="center"
+                            android:textSize="17dp"
+                            android:textStyle="bold">
+
+                        </TextView>
+                        <TextView
+                            android:id="@+id/enrollmentR"
+                            android:layout_width="0dp"
+                            android:layout_weight="1.5"
+                            android:layout_height="wrap_content"
+                            android:textSize="17dp"
+                            android:paddingLeft="10dp"
+                            android:gravity="left|center">
+
+                        </TextView>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="15dp">
+
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/personalDetail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="20dp"
+                        android:gravity="center"
+                        android:background="@color/colorPrimary"
+                        android:textAllCaps="true"
+                        android:textStyle="bold">
+
+                    </TextView>
+
+                    <!-- Dummy TextView to fill in some space-->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="10">
+
+                    </TextView>
+
+                    <LinearLayout
+                        android:id="@+id/studentName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="3"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/studentNameL"
+                            android:paddingRight="5dp"
+                            android:layout_width="0dp"
+                            android:layout_weight="1.5"
+                            android:gravity="left|center"
+                            android:layout_height="wrap_content"
+                            android:textSize="17dp"
+                            android:paddingLeft="20dp">
+
+                        </TextView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/colon"
+                            android:gravity="center"
+                            android:textSize="17dp"
+                            android:textStyle="bold">
+
+                        </TextView>
+                        <TextView
+                            android:id="@+id/studentNameR"
+                            android:layout_width="0dp"
+                            android:layout_weight="1.5"
+                            android:layout_height="wrap_content"
+                            android:textSize="17dp"
+                            android:paddingLeft="10dp"
+                            android:gravity="left|center">
+
+                        </TextView>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/dob"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="3"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/dobL"
+                            android:paddingRight="5dp"
+                            android:layout_width="0dp"
+                            android:layout_weight="1.5"
+                            android:gravity="left|center"
+                            android:layout_height="wrap_content"
+                            android:textSize="17dp"
+                            android:paddingLeft="20dp">
+
+                        </TextView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/colon"
+                            android:textSize="17dp"
+                            android:textStyle="bold">
+
+                        </TextView>
+                        <TextView
+                            android:id="@+id/dobR"
+                            android:layout_width="0dp"
+                            android:layout_weight="1.5"
+                            android:layout_height="wrap_content"
+                            android:textSize="17dp"
+                            android:paddingLeft="10dp"
+                            android:gravity="left|center">
+
+                        </TextView>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/gender"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="3"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/genderL"
+                            android:paddingRight="5dp"
+                            android:layout_width="0dp"
+                            android:layout_weight="1.5"
+                            android:gravity="left|center"
+                            android:layout_height="wrap_content"
+                            android:textSize="17dp"
+                            android:paddingLeft="20dp">
+
+                        </TextView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/colon"
+                            android:gravity="center"
+                            android:textSize="17dp"
+                            android:textStyle="bold">
+
+                        </TextView>
+                        <TextView
+                            android:id="@+id/genderR"
+                            android:layout_width="0dp"
+                            android:layout_weight="1.5"
+                            android:layout_height="wrap_content"
+                            android:textSize="17dp"
+                            android:paddingLeft="10dp"
+                            android:gravity="left|center">
+
+                        </TextView>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/fatherName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="3"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/fatherNameL"
+                            android:paddingRight="5dp"
+                            android:layout_width="0dp"
+                            android:layout_weight="1.5"
+                            android:gravity="left|center"
+                            android:layout_height="wrap_content"
+                            android:textSize="17dp"
+                            android:paddingLeft="20dp">
+
+                        </TextView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/colon"
+                            android:gravity="center"
+                            android:textSize="17dp"
+                            android:textStyle="bold">
+
+                        </TextView>
+                        <TextView
+                            android:id="@+id/fatherNameR"
+                            android:layout_width="0dp"
+                            android:layout_weight="1.5"
+                            android:layout_height="wrap_content"
+                            android:textSize="17dp"
+                            android:paddingLeft="10dp"
+                            android:gravity="left|center">
+
+                        </TextView>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/motherName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="3"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/motherNameL"
+                            android:paddingRight="5dp"
+                            android:layout_width="0dp"
+                            android:layout_weight="1.5"
+                            android:gravity="left|center"
+                            android:layout_height="wrap_content"
+                            android:textSize="17dp"
+                            android:paddingLeft="20dp">
+
+                        </TextView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/colon"
+                            android:gravity="center"
+                            android:textSize="17dp"
+                            android:textStyle="bold">
+
+                        </TextView>
+                        <TextView
+                            android:id="@+id/motherNameR"
+                            android:layout_width="0dp"
+                            android:layout_weight="1.5"
+                            android:layout_height="wrap_content"
+                            android:textSize="17dp"
+                            android:paddingLeft="10dp"
+                            android:gravity="left|center">
+
+                        </TextView>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!--  Dummy Text to fill space  -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="10dp">
+
+            </TextView>
+
+
+
+
+        </LinearLayout>
+
+
+
+    </ScrollView>
+
+
+</LinearLayout>

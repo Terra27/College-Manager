@@ -107,4 +107,163 @@
          type="id"
          name="downloadImage"
          />
+
+     <!--  Student Profile Window  -->
+     <item
+         type="id"
+         name="details"
+         />
+     <item
+         type="id"
+         name="detailsCard"
+         />
+
+     <!-- These ids are for student name and roll number and student image at the top  -->
+     <item
+         type="id"
+         name="stuName"
+         />
+     <item
+         type="id"
+         name="stuRoll"
+         />
+     <item
+         type="id"
+         name="studentImg"
+         />
+     <!-- Upto this part -->
+
+
+     <item
+         type="id"
+         name="registration"
+         />
+     <item
+         type="id"
+         name="yearLine"
+         />
+     <item
+         type="id"
+         name="yearOfAdmissionL"
+         />
+     <item
+         type="id"
+         name="yearOfAdmissionR"
+         />
+     <item
+         type="id"
+         name="course"
+         />
+     <item
+         type="id"
+         name="courseL"
+         />
+     <item
+         type="id"
+         name="courseR"
+         />
+     <item
+         type="id"
+         name="branch"
+         />
+     <item
+         type="id"
+         name="branchL"
+         />
+     <item
+         type="id"
+         name="branchR"
+         />
+     <item
+         type="id"
+         name="currentSem"
+         />
+     <item
+         type="id"
+         name="currentSemL"
+         />
+     <item
+         type="id"
+         name="currentSemR"
+         />
+     <item
+         type="id"
+         name="enrollment"
+         />
+     <item
+         type="id"
+         name="enrollmentL"
+         />
+     <item
+         type="id"
+         name="enrollmentR"
+         />
+     <item
+         type="id"
+         name="personalDetails"
+         />
+     <item
+         type="id"
+         name="studentName"
+         />
+     <item
+         type="id"
+         name="studentNameL"
+         />
+     <item
+         type="id"
+         name="studentNameR"
+         />
+     <item
+         type="id"
+         name="dob"
+         />
+     <item
+         type="id"
+         name="dobL"
+         />
+     <item
+         type="id"
+         name="dobR"
+         />
+     <item
+         type="id"
+         name="gender"
+         />
+     <item
+         type="id"
+         name="genderL"
+         />
+     <item
+         type="id"
+         name="genderR"
+         />
+     <item
+         type="id"
+         name="fatherName"
+         />
+     <item
+         type="id"
+         name="fatherNameL"
+         />
+     <item
+         type="id"
+         name="fatherNameR"
+         />
+     <item
+         type="id"
+         name="motherName"
+         />
+     <item
+         type="id"
+         name="motherNameL"
+         />
+     <item
+         type="id"
+         name="motherNameR"
+         />
+
+
+
+
 </resources>

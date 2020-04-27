@@ -17,4 +17,8 @@
 
     <!-- Pending Assignment Screen -->
     <string name="welcome_pending">The following assignments are pending, long press on one of the assignments to upload it\'s solution.</string>
+
+    <!-- Student Profile Screen  -->
+    <string name="student_img">Student Image</string>
+    <string name="colon">:</string>
 </resources>
