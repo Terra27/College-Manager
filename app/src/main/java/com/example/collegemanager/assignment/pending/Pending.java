@@ -36,9 +36,6 @@ public class Pending extends AppCompatActivity {
     private int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
     private int PICK_FILE_REQUEST_CODE = 23;
 
-    //
-    private int studentID = 2;
-
     // Binding Status
     private ArrayList<ArrayList<String>> currResult = null;
     private MessageInterface binder;
@@ -58,7 +55,7 @@ public class Pending extends AppCompatActivity {
     }
     */
 
-    ServiceConnection abstractConnection = new ServiceConnection() {
+    private ServiceConnection abstractConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder theBinder) {
             if ( !activityBinded ) {
@@ -147,14 +144,14 @@ public class Pending extends AppCompatActivity {
         // Bind to the Database Handler
         Intent databaseService = new Intent(getApplicationContext(), DatabaseHandler.class);
         bindService(databaseService, abstractConnection, BIND_AUTO_CREATE);
-        fetchDatabaseResult();
+        fetchDatabaseResult(Integer.parseInt(getIntent().getStringExtra("id")));
 
         // Ask for External Storage Permission
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
             ActivityCompat.requestPermissions(this, new String[] { Manifest.permission.WRITE_EXTERNAL_STORAGE }, MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
     }
 
-    private void fetchDatabaseResult() {
+    private void fetchDatabaseResult(int studentID) {
 
         // Perform the RPC on another thread to avoid blocking the main thread
         new Thread() {
@@ -166,56 +163,21 @@ public class Pending extends AppCompatActivity {
                         Thread.sleep(100);
 
                     currResult = boundService.selectQuery("SELECT A.assignmentid, facultyid, title, due, filesize, filetype, fileurl, classid FROM hassubmitted AS T, assignments AS A WHERE T.assignmentid = A. assignmentid AND T.studentid="+ studentID +" AND T.status=1");
-                    //currResult = boundService.selectQuery("SELECT assignmentid, facultyid, title, due, filesize, filetype, fileurl, classid FROM assignments");
 
-                    String[ ] faculty = {"Pawan Kumar Tiwari", "S. P Tripathi", "Ram Kumar", "Ayush Mehta", "Tihar Singh"};
+                    String[ ] faculty = {"Pawan Kumar Tiwari", "S. P. Tripathi", "Ram Kumar", "Ayush Mehta", "Tihar Singh"};
 
                     // Add objects to the Array
                     int i = 0;
                     while ( i < currResult.size() ) {
 
-                        int id = 0;
-                        String title = "";
-                        String due = "";
-                        String facultyname = "";
-                        int filetype = 0;
-                        String FILE_NAME = "";
-                        int CLASS_ID = 0;
-                        int FILE_SIZE = 0; // bytes
-
-                        int j = 0;
-                        while ( j < currResult.get(i).size( ) ) {
-
-                            switch (j) {
-                                case 0:
-                                    id = Integer.parseInt(currResult.get(i).get(j));
-                                    break;
-                                case 1:
-                                    facultyname = faculty[Integer.parseInt(currResult.get(i).get(j)) - 1];
-                                    break;
-                                case 2:
-                                    title = currResult.get(i).get(j);
-                                    break;
-                                case 3:
-                                    due = currResult.get(i).get(j);
-                                    break;
-                                case 4:
-                                    FILE_SIZE = Integer.parseInt(currResult.get(i).get(j));
-                                    break;
-                                case 5:
-                                    filetype = Integer.parseInt(currResult.get(i).get(j));
-                                    break;
-                                case 6:
-                                    FILE_NAME = currResult.get(i).get(j);
-                                    break;
-                                case 7:
-                                    CLASS_ID = Integer.parseInt(currResult.get(i).get(j));
-                                    break;
-                                default:
-                                    break;
-                            }
-                            j++;
-                        }
+                        int id = Integer.parseInt(currResult.get(i).get(0));
+                        String facultyname = faculty[Integer.parseInt(currResult.get(i).get(1)) - 1];
+                        String title = currResult.get(i).get(2);
+                        String due = currResult.get(i).get(3);
+                        int FILE_SIZE = Integer.parseInt(currResult.get(i).get(4)); // bytes
+                        int filetype = Integer.parseInt(currResult.get(i).get(5));
+                        String FILE_NAME = currResult.get(i).get(6);
+                        int CLASS_ID = Integer.parseInt(currResult.get(i).get(7));
 
                         // Convert to Kilobytes
                         if ( filetype == 2 )

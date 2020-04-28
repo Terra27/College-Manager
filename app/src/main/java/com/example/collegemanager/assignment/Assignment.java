@@ -22,6 +22,11 @@ public class Assignment extends AppCompatActivity {
         pendingButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View clickedButton) {
                 Intent intent = new Intent(getApplicationContext(), Pending.class);
+
+                // Pass on my ID to fetch my pending assignments
+                Intent data = getIntent();
+                intent.putExtra("id", data.getStringExtra("id"));
+
                 startActivity(intent);
             }
         });

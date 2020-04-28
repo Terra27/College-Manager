@@ -6,7 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.collegemanager.GlobalKeys;
 import com.example.collegemanager.R;
 import com.example.collegemanager.assignment.Assignment;
 
@@ -39,6 +42,13 @@ public class Home extends AppCompatActivity {
 
             if ( viewID == 4 ) {
                 Intent assignment = new Intent(getApplicationContext(), Assignment.class);
+
+                // Take the data this activity has and pass it to the next
+                Intent data = getIntent();
+                for ( int i= 0; i < GlobalKeys.dataKeys.length; i++) {
+                    assignment.putExtra(GlobalKeys.dataKeys[i], data.getStringExtra(GlobalKeys.dataKeys[i]));
+                }
+
                 startActivity(assignment);
             }
         }
@@ -49,6 +59,8 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        TextView welcomeText = findViewById(R.id.greetingText);
+        welcomeText.setText("Welcome to your Profile "+ getIntent().getStringExtra("name") +".");
         // The data source for the ArrayAdapter.
         ArrayList<HomeOptions> homeOptions = new ArrayList<HomeOptions>();
 
