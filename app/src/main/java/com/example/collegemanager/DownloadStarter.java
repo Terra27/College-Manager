@@ -20,6 +20,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
@@ -39,7 +40,6 @@ public class DownloadStarter extends IntentService {
 
     // Provided by Database
     private String FILE_NAME;
-    private int FILE_SIZE; // megabytes
 
     private String CHANNEL_ID = "NetworkChannelIdentifier";
     private int notificationID = 12365;
@@ -47,7 +47,7 @@ public class DownloadStarter extends IntentService {
     private NotificationCompat.Builder notificationBuilder;
 
     // Download Progress
-    private int PROGRESS_MAX = FILE_SIZE;
+    private int PROGRESS_MAX = 0;
     private int PROGRESS_CURR = 0;
 
     //private ActivityMessenger activityMessenger;
@@ -57,32 +57,15 @@ public class DownloadStarter extends IntentService {
         super("DownloadHandler");
     }
 
-    /*
-    A way for the Activity and Service to communicate by binding, not really needed here.
-    private class messageInterface extends Binder {
-
-        private DownloadStarter getServiceInstance( ) {
-            return DownloadStarter.this;
-        }
-
-        private void setListener (ActivityMessenger messenger) {
-            activityMessenger = messenger;
-        }
-    }
-
-    @Nullable
-    @Override
-    public IBinder onBind(Intent intent) {
-        return new messageInterface();
-    }
-     */
 
     @Override
     protected void onHandleIntent(Intent intent) {
         if (intent != null) {
 
             FILE_NAME = intent.getStringExtra("fileName");
-            FILE_SIZE = intent.getIntExtra("fileSize", 0);
+            PROGRESS_MAX =  intent.getIntExtra("fileSize", 0);
+
+            System.out.println(FILE_NAME + " "+ PROGRESS_MAX/1024);
 
             notification = createDownloadNotification(R.drawable.notify, "Downloading File..", "Your Assignment is being downloaded.");
             startForeground(notificationID, notification);
@@ -113,12 +96,29 @@ public class DownloadStarter extends IntentService {
             InetAddress inetAddress = InetAddress.getByName(HOSTNAME);
             SocketAddress socketAddress = new InetSocketAddress(inetAddress, PORT);
 
+            // First send the File name
             Socket clientSocket = new Socket();
-            clientSocket.connect(socketAddress, TIMEOUT);
+            clientSocket.connect(socketAddress, TIMEOUT); // Blocks for TIMEOUT seconds.
+            if ( clientSocket != null ) {
 
-            if (clientSocket != null) {
                 System.out.println("Connection Established.");
 
+                PrintWriter writer = new PrintWriter( clientSocket.getOutputStream() );
+                writer.println(FILE_NAME);
+                writer.flush();
+
+                /* Don't close this connection, otherwise if multiple clients are connecting you will be sent to
+                // the back of the server connection accept queue when you create another request.
+
+                dataSocket.close();
+
+                // Now download the file
+                Socket clientSocket = new Socket();
+                clientSocket.connect(socketAddress, TIMEOUT);
+
+                if (clientSocket != null) {
+                    System.out.println("Connection Established.");
+                 */
                 BufferedInputStream bufferedInput = new BufferedInputStream(clientSocket.getInputStream(), BUFFER_SIZE);
 
                 System.out.println("Creating file " + FILE_NAME + " on client at " + FILE_PATH + ".");
@@ -136,7 +136,7 @@ public class DownloadStarter extends IntentService {
 
                     // Update Progress bar
                     PROGRESS_CURR = PROGRESS_CURR + bytesRead;
-                    if ( PROGRESS_CURR < PROGRESS_MAX ) {
+                    if (PROGRESS_CURR < PROGRESS_MAX) {
                         notificationBuilder.setProgress(PROGRESS_MAX, PROGRESS_CURR, false);
                         startForeground(notificationID, notificationBuilder.build());
                     }
@@ -147,12 +147,15 @@ public class DownloadStarter extends IntentService {
                 System.out.println("File Copied!");
                 bufferedFileOutput.flush();
                 bufferedFileOutput.close();
+                // Closing the stream earlier also closes the underlying socket connection
+                // writer.close(); // Close the character stream, no longer needed
 
                 System.out.println("Connection Closed.");
                 //activityMessenger.connectionOver();
 
                 if (clientSocket != null)
                     clientSocket.close();
+                //}
             }
         }
         catch ( SocketTimeoutException e) {

@@ -17,6 +17,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
@@ -28,7 +29,7 @@ import static androidx.core.app.ActivityCompat.startActivityForResult;
 public class UploadStarter extends IntentService {
 
     private String HOSTNAME = "192.168.1.7";
-    private int PORT = 1600;
+    private int PORT = 1601;
     private int TIMEOUT = 10*1000;
 
     private int BUFFER_SIZE = 8*1024;
@@ -64,13 +65,12 @@ public class UploadStarter extends IntentService {
             startForeground(notificationID, notification);
 
             Uri FileUri = data.getData();
-            uploadHandler(FileUri);
+            uploadHandler(FileUri, data.getStringExtra("fileName"), data.getStringExtra("professorName"));
         }
     }
 
-    private void uploadHandler(Uri FileUri) {
+    private void uploadHandler(Uri FileUri, String FILE_NAME, String professorName) {
         if ( FileUri != null ) {
-            System.out.println("File Uri not null.");
             InputStream byteStream = null;
             try {
                 byteStream = getApplicationContext().getContentResolver().openInputStream(FileUri);
@@ -88,6 +88,12 @@ public class UploadStarter extends IntentService {
                     if (clientSocket != null) {
                         System.out.println("Connection Established!");
 
+                        // Send file name
+                        PrintWriter writer = new PrintWriter( clientSocket.getOutputStream() );
+                        writer.println(professorName +";"+ FILE_NAME);
+                        writer.flush();
+
+                        //Send File
                         BufferedInputStream bufferedFileInput = new BufferedInputStream( byteStream, BUFFER_SIZE ); // default 2KB
                         BufferedOutputStream bufferedOutput = new BufferedOutputStream( clientSocket.getOutputStream(), BUFFER_SIZE ); // default 512 bytes
 
