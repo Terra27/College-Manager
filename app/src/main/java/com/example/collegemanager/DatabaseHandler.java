@@ -64,7 +64,7 @@ public class DatabaseHandler extends Service {
     public ArrayList<ArrayList<String>> selectQuery (String query) {
 
         String resultString = null;
-        ArrayList<ArrayList<String>> resultTable = new ArrayList<ArrayList<String>>();
+        ArrayList<ArrayList<String>> resultTable = null;
         try {
 
             // connection() method is used instead of the Socket() constructor to allow timeout.
@@ -103,7 +103,10 @@ public class DatabaseHandler extends Service {
         }
 
         // Extract data from the string and create a 2D ArrayList
-        if ( resultString != null ) {
+        if ( resultString != null && resultString.length() > 0 ) {
+
+            resultTable = new ArrayList<ArrayList<String>>();
+
             int i = 1;
             char lastChar = resultString.charAt(0);
             int lastSemicolonIndex = -1;
