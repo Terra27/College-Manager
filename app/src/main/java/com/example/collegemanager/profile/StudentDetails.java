@@ -31,68 +31,41 @@ public class StudentDetails extends AppCompatActivity {
         TextView registration = (TextView)findViewById(R.id.registration);
         registration.setText("Registration");
 
-        TextView yearL = (TextView)findViewById(R.id.yearOfAdmissionL);
-        yearL.setText("Year of Admission");
+        TextView year = (TextView)findViewById(R.id.yearOfAdmission);
+        year.setText("Year of Admission   :   2016");
 
-        TextView yearR = (TextView)findViewById(R.id.yearOfAdmissionR);
-        yearR.setText("2016");
+        TextView course = (TextView)findViewById(R.id.course);
+        course.setText("Course   :   B.Tech");
 
-        TextView courseL = (TextView)findViewById(R.id.courseL);
-        courseL.setText("Course");
-
-        TextView courseR = (TextView)findViewById(R.id.courseR);
-        courseR.setText("B.Tech");
-
-        TextView branchL = (TextView)findViewById(R.id.branchL);
-        branchL.setText("Branch");
-
-        TextView branchR = (TextView)findViewById(R.id.branchR);
-        branchR.setText("Computer Science and Engineering");
-
-        TextView currentSemL = (TextView)findViewById(R.id.currentSemL);
-        currentSemL.setText("Current Semester");
+        TextView branch = (TextView)findViewById(R.id.branch);
+        branch.setText("Branch  :  Computer Science and Engineering");
 
         // ONLY DATA VARIABLE IN THIS WINDOW IS CURRENT SEMESTER
 
-        TextView currentSemR = (TextView)findViewById(R.id.currentSemR);
-        currentSemR.setText("8");
+        TextView currentSem = (TextView)findViewById(R.id.currentSem);
+        currentSem.setText("Current Semester   :   8");
 
-        TextView enrollmentL = (TextView)findViewById(R.id.enrollmentL);
-        enrollmentL.setText("Enrollment number");
 
-        TextView enrollmentR = (TextView)findViewById(R.id.enrollmentR);
-        enrollmentR.setText("1164646449+6568");
+        TextView enrollment = (TextView)findViewById(R.id.enrollment);
+        enrollment.setText("Enrollment number   :   5165435135435435");
 
-        TextView personalDetail = (TextView)findViewById(R.id.personalDetail);
-        personalDetail.setText("Personla Details");
+        TextView personalDetail = (TextView)findViewById(R.id.personalDetails);
+        personalDetail.setText("Personal Details");
 
-        TextView studentNameL = (TextView)findViewById(R.id.studentNameL);
-        studentNameL.setText("Student's Name");
+        TextView studentName = (TextView)findViewById(R.id.studentName);
+        studentName.setText("Student's Name   :   Ayush");
 
-        TextView dobL = (TextView)findViewById(R.id.dobL);
-        dobL.setText("Date of Birth");
+        TextView dob = (TextView)findViewById(R.id.dob);
+        dob.setText("Date of Birth   :   23/04/1998");
 
-        TextView dobR = (TextView)findViewById(R.id.dobR);
-        dobR.setText("23/04/1998");
+        TextView gender = (TextView)findViewById(R.id.gender);
+        gender.setText("Gender   :   Male");
 
-        TextView genderL = (TextView)findViewById(R.id.genderR);
-        genderL.setText("Gender");
+        TextView fatherName = (TextView)findViewById(R.id.fatherName);
+        fatherName.setText("Father's Name   :   Mr.Vijay Kumar Sharma");
 
-        TextView genderR = (TextView)findViewById(R.id.genderR);
-        genderR.setText("Male");
-
-        TextView fatherNameL = (TextView)findViewById(R.id.fatherNameL);
-        fatherNameL.setText("Father's Name");
-
-        TextView fatherNameR = (TextView)findViewById(R.id.fatherNameR);
-        fatherNameR.setText("Mr.Vijay Kmumar Sharma");
-
-        TextView motherNameL = (TextView)findViewById(R.id.motherNameL);
-        motherNameL.setText("Mother's Name");
-
-        TextView motherNameR = (TextView)findViewById(R.id.motherNameR);
-        motherNameR.setText("Mrs.Mithilesh Sharma");
-
+        TextView motherName = (TextView)findViewById(R.id.motherName);
+        motherName.setText("Mother's Name   :   Mrs.Mithilesh Sharma");
 
 
 
