@@ -6,7 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,21 +20,53 @@ import com.example.collegemanager.DownloadStarter;
 import com.example.collegemanager.R;
 import com.example.collegemanager.UploadStarter;
 
-public class ItemAdapter extends ArrayAdapter<PendingItem> {
+public class ItemAdapter extends BaseAdapter {
 
     private Pending.ClickListener parentActivityClickListener;
+    private AppCompatActivity parentActivity;
 
+    private Context context; //context
+    private ArrayList<PendingItem> items; //data source of the list adapter
+
+    public ItemAdapter(Context context, ArrayList<PendingItem> items) {
+        this.context = context;
+        this.items = items;
+    }
+
+    public ItemAdapter(Context context, ArrayList<PendingItem> items, Pending.ClickListener listener, AppCompatActivity activity) {
+        this.context = context;
+        this.items = items;
+        parentActivityClickListener = listener;
+        parentActivity = activity;
+    }
+
+    @Override
+    public int getCount() {
+        return items.size(); //returns total of items in the list
+    }
+
+    @Override
+    public PendingItem getItem(int position) {
+        return items.get(position); //returns list item at the specified position
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    /*
     public ItemAdapter(Context context, ArrayList<PendingItem> itemPending, Pending.ClickListener listener) {
         super(context, 0, itemPending);
         parentActivityClickListener = listener;
     }
-
+     */
     public View getView(int position, View convertView, ViewGroup parent) {
 
         PendingItem item = getItem(position);
 
         if ( convertView == null )
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_pending, parent, false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_pending, parent, false);
 
         // Set the values for the TextView and ImageView in the inflated Layout using the data in the object.
         TextView titleText = (TextView)convertView.findViewById(R.id.itemTitle);
@@ -47,13 +81,13 @@ public class ItemAdapter extends ArrayAdapter<PendingItem> {
         ImageView itemImage = (ImageView)convertView.findViewById(R.id.subjectImage);
         itemImage.setImageResource(item.pendingImage);
 
-        CardView itemCard = (CardView)convertView.findViewById(R.id.itemPending);
+        ListView itemList = (ListView)parentActivity.findViewById(R.id.pendingList);
 
         // File Upload
-        itemCard.setOnLongClickListener(parentActivityClickListener);
+        itemList.setOnItemLongClickListener(parentActivityClickListener);
 
         // File Download
-        itemCard.setOnClickListener(parentActivityClickListener);
+        itemList.setOnItemClickListener(parentActivityClickListener);
 
         return convertView;
     }
