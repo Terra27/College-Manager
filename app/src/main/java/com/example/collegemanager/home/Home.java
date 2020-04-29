@@ -60,7 +60,7 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         TextView welcomeText = findViewById(R.id.greetingText);
-        welcomeText.setText("Welcome to your Profile "+ getIntent().getStringExtra("name") +".");
+        welcomeText.setText("Welcome to your profile "+ getIntent().getStringExtra("name"));
         // The data source for the ArrayAdapter.
         ArrayList<HomeOptions> homeOptions = new ArrayList<HomeOptions>();
 

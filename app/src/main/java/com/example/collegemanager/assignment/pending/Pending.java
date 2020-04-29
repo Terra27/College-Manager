@@ -162,10 +162,10 @@ public class Pending extends AppCompatActivity {
                     while (binder == null)
                         Thread.sleep(100);
 
-                    currResult = boundService.selectQuery("SELECT A.assignmentid, facultyid, title, due, filesize, filetype, fileurl, classid FROM hassubmitted AS T, assignments AS A WHERE T.assignmentid = A. assignmentid AND T.studentid="+ studentID +" AND T.status=1");
+                    currResult = boundService.selectQuery("SELECT A.assignmentid, facultyid, title, due, filesize, filetype, fileurl, classid, branch FROM hassubmitted AS T, assignments AS A WHERE T.assignmentid = A. assignmentid AND T.studentid="+ studentID +" AND T.status=1");
 
                     String[ ] faculty = {"Pawan Kumar Tiwari", "S. P. Tripathi", "Ram Kumar", "Ayush Mehta", "Tihar Singh"};
-
+                    int[ ] branches = { R.drawable.computers, R.drawable.electronics, R.drawable.electrical, R.drawable.civil, R.drawable.mechanical, R.drawable.chemical, R.drawable.science };
                     // Add objects to the Array
                     int i = 0;
                     while ( i < currResult.size() ) {
@@ -178,12 +178,13 @@ public class Pending extends AppCompatActivity {
                         int filetype = Integer.parseInt(currResult.get(i).get(5));
                         String FILE_NAME = currResult.get(i).get(6);
                         int CLASS_ID = Integer.parseInt(currResult.get(i).get(7));
+                        int icon = Integer.parseInt(currResult.get(i).get(8));
 
                         // Convert to Kilobytes
                         if ( filetype == 2 )
                             FILE_SIZE = FILE_SIZE * 1024;
 
-                        pendingItems.add(new PendingItem(id, R.drawable.subject, title, due, facultyname, FILE_SIZE, FILE_NAME, CLASS_ID));
+                        pendingItems.add(new PendingItem(id, branches[icon - 1], title, due, facultyname, FILE_SIZE, FILE_NAME, CLASS_ID));
                         i++;
                     }
 

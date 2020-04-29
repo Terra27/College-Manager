@@ -59,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
 
                     Thread transactionThread = new Thread() {
                         public void run() {
-                            //currResult = boundService.selectQuery("SELECT studentid, classid, name, rollno, admissionyear, enrollmentno, dob, gender, fathername, mothername FROM students WHERE username='" + username + "' AND password='" + password + "'");
                             currResult = boundService.selectQuery("SELECT studentid, A.classid, name, rollno, admissionyear, enrollmentno, dob, gender, fathername, mothername, year, course, branch, semester FROM students AS A, classes AS T WHERE A.username='"+ username +"' AND A.password='"+ password +"' AND A.classid = T.classid");
                         }
                     };
