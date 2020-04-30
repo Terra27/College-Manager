@@ -26,6 +26,7 @@ import android.os.Looper;
 import android.provider.OpenableColumns;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -46,6 +47,10 @@ public class Pending extends AppCompatActivity {
     ArrayList<PendingItem> pendingItems;
     ItemAdapter itemAdapter;
 
+    private boolean loading = false;
+    private ImageView loader;
+    private ImageView alert;
+
     /*A way for the Service to send message to the Activity, not required when using RPC
     public class CallTaker implements ActivityMessenger {
         public void queryResult(String result) {
@@ -63,6 +68,9 @@ public class Pending extends AppCompatActivity {
 
                 binder = (MessageInterface)theBinder;
                 boundService = binder.getServiceInstance();
+
+                // Fetch Database result as soon as binded
+                fetchDatabaseResult(Integer.parseInt(getIntent().getStringExtra("id")));
             }
         }
 
@@ -144,7 +152,6 @@ public class Pending extends AppCompatActivity {
         // Bind to the Database Handler
         Intent databaseService = new Intent(getApplicationContext(), DatabaseHandler.class);
         bindService(databaseService, abstractConnection, BIND_AUTO_CREATE);
-        fetchDatabaseResult(Integer.parseInt(getIntent().getStringExtra("id")));
 
         // Ask for External Storage Permission
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
@@ -153,23 +160,26 @@ public class Pending extends AppCompatActivity {
 
     private void fetchDatabaseResult(int studentID) {
 
+        loader = findViewById(R.id.loader);
+        alert = findViewById(R.id.alert);
+
         // Perform the RPC on another thread to avoid blocking the main thread
         new Thread() {
             public void run() {
 
-                try {
-                    // Sleep till the database result arrives
-                    while (binder == null)
-                        Thread.sleep(100);
+                // setLoader();
+                postToMain(1);
+                currResult = boundService.selectQuery("SELECT A.assignmentid, facultyid, title, due, filesize, filetype, fileurl, classid, branch FROM hassubmitted AS T, assignments AS A WHERE T.assignmentid = A. assignmentid AND T.studentid="+ studentID +" AND T.status=1");
+                if (currResult != null) {
 
-                    currResult = boundService.selectQuery("SELECT A.assignmentid, facultyid, title, due, filesize, filetype, fileurl, classid, branch FROM hassubmitted AS T, assignments AS A WHERE T.assignmentid = A. assignmentid AND T.studentid="+ studentID +" AND T.status=1");
+                    // removeLoader();
+                    postToMain(2, false);
 
-                    String[ ] faculty = {"Pawan Kumar Tiwari", "S. P. Tripathi", "Ram Kumar", "Ayush Mehta", "Tihar Singh"};
-                    int[ ] branches = { R.drawable.computers, R.drawable.electronics, R.drawable.electrical, R.drawable.civil, R.drawable.mechanical, R.drawable.chemical, R.drawable.science };
+                    String[] faculty = {"Pawan Kumar Tiwari", "S. P. Tripathi", "Ram Kumar", "Ayush Mehta", "Tihar Singh"};
+                    int[] branches = {R.drawable.computers, R.drawable.electronics, R.drawable.electrical, R.drawable.civil, R.drawable.mechanical, R.drawable.chemical, R.drawable.science};
                     // Add objects to the Array
                     int i = 0;
-                    while ( i < currResult.size() ) {
-
+                    while (i < currResult.size()) {
                         int id = Integer.parseInt(currResult.get(i).get(0));
                         String facultyname = faculty[Integer.parseInt(currResult.get(i).get(1)) - 1];
                         String title = currResult.get(i).get(2);
@@ -180,28 +190,94 @@ public class Pending extends AppCompatActivity {
                         int CLASS_ID = Integer.parseInt(currResult.get(i).get(7));
                         int icon = Integer.parseInt(currResult.get(i).get(8));
 
-                        // Convert to Kilobytes
-                        if ( filetype == 2 )
+                        // Convert to Kilobyte
+                        if (filetype == 2)
                             FILE_SIZE = FILE_SIZE * 1024;
 
                         pendingItems.add(new PendingItem(id, branches[icon - 1], title, due, facultyname, FILE_SIZE, FILE_NAME, CLASS_ID));
                         i++;
                     }
 
-                     // Only the Main Thread can touch Views and their adapters.
+                    // Only the Main Thread can touch Views and their adapters.
                     // Schedule on the main thread.
-                    new Handler(Looper.getMainLooper()).post(new Runnable() {
-                        @Override
-                        public void run() {
-                            itemAdapter.notifyDataSetChanged();
-                        }
-                    });
+                    // notifyDataSetChange()
+                    postToMain(0);
                 }
-                catch (InterruptedException e) {
-                    System.out.println("Database fetch thread interrupted.");
+                else
+                {
+                    // removeLoader(true);
+                    postToMain(2, true);
                 }
             }
         }.start();
+    }
+
+    // Schedule these instructions on the main thread using the Looper
+    private void postToMain(int instructionID, boolean showAlert) {
+        new Handler(Looper.getMainLooper()).post(new Runnable() {
+            @Override
+            public void run() {
+                switch (instructionID) {
+                    case 2:
+                        removeLoader(showAlert);
+                }
+            }
+        });
+    }
+
+    private void postToMain(int instructionID) {
+        new Handler(Looper.getMainLooper()).post(new Runnable() {
+            @Override
+            public void run() {
+                switch (instructionID) {
+                    case 0:
+                        itemAdapter.notifyDataSetChanged();
+                        break;
+                    case 1:
+                        setLoader();
+                }
+            }
+        });
+    }
+
+    private void setLoader() {
+
+        new Thread() {
+            public void run() {
+                try {
+                    // Creating loading image..
+                    loading = true;
+
+                    float degrees = 0;
+                    while (loading) {
+                        loader.setRotation(degrees);
+                        degrees = (degrees + 5) % 360;
+
+                        Thread.sleep(50);
+                    }
+
+                }
+                catch (InterruptedException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+        }.start();
+    }
+
+    // Kill the thread showing the loader followed by a choice of alert
+    private void removeLoader(boolean showAlert) {
+        loading = false;
+
+        if ( showAlert) {
+            alert.setVisibility(View.VISIBLE);
+            findViewById(R.id.networkErrorText).setVisibility(View.VISIBLE);
+        }
+        else {
+            alert.setVisibility(View.GONE);
+            findViewById(R.id.networkErrorText).setVisibility(View.GONE);
+        }
+
+        loader.setVisibility(View.GONE);
     }
 
     @Override
