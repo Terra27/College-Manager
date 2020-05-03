@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@id/attendanceCard"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_marginTop="25dp"
+        app:cardCornerRadius="12dp"
+        android:layout_gravity="center">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@id/subCode"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="RCS-901"
+                android:layout_centerHorizontal="true"
+                android:textStyle="bold"
+                android:textSize="20dp">
+
+            </TextView>
+
+            <TextView
+                android:id="@id/attendance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/subCode"
+                android:text="Attendance : 20/30"
+                android:textSize="15dp"
+                android:layout_marginTop="5dp"
+                android:paddingLeft="15dp">
+
+            </TextView>
+
+
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/attendance"
+                android:layout_marginTop="2dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="6dp"
+                android:max="100"
+                android:indeterminate="false"
+                android:progress="80"
+                android:scaleY="2">
+
+            </ProgressBar>
+
+            <ImageView
+                android:id="@id/warningSign"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_below="@id/progressBar"
+                android:layout_marginLeft="20dp"
+                android:src="@drawable/warning">
+            </ImageView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your attendance is below 75%"
+                android:layout_below="@id/progressBar"
+                android:layout_toRightOf="@id/warningSign"
+                android:textSize="10dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginLeft="6dp"
+                android:gravity="center"
+                android:textColor="@color/warningTextColor">
+
+            </TextView>
+
+
+        </RelativeLayout>
+
+
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
+
+
+</LinearLayout>

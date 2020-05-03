@@ -117,6 +117,10 @@
          type="id"
          name="dummyTextView"
          />
+     <item
+         type="id"
+         name="stuImage"
+         />
 
      <item
          type="id"
@@ -128,10 +132,7 @@
          />
 
      <!-- Upto this part -->
-    <item
-        type="id"
-        name="dummyTextView2"
-        />
+
     <item
          type="id"
          name="registration"
@@ -179,6 +180,39 @@
      <item
          type="id"
          name="motherName"
+         />
+
+
+    <!-- Attendance Window  -->
+
+     <item
+         type="id"
+         name="attendanceList"
+         />
+
+     <item
+         type="id"
+         name="attendanceCard"
+         />
+     <item
+         type="id"
+         name="subCode"
+         />
+     <item
+         type="id"
+         name="attendance"
+         />
+     <item
+         type="id"
+         name="progressBar"
+         />
+     <item
+         type="id"
+         name="warningSign"
+         />
+     <item
+         type="id"
+         name="warningText"
          />
 
 

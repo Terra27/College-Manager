@@ -1,208 +1,238 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
     android:layout_width="match_parent">
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:paddingTop="20dp"
+        android:paddingBottom="5dp">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="15dp"
-            android:id="@id/dummyTextView"
-            android:background="@color/colorPrimary">
-
-        </TextView>
-
-        <TextView
-            android:id="@id/stuName"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@id/dummyTextView"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:background="@color/colorPrimary"
-            android:textSize="25dp"
-            android:layout_centerHorizontal="true">
-
-        </TextView>
-
-        <TextView
-            android:id="@id/stuRoll"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@id/stuName"
-            android:textStyle="bold"
-            android:background="@color/colorPrimary"
-            android:gravity="center"
-            android:textSize="25dp"
-            android:layout_centerHorizontal="true">
-
-        </TextView>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="15dp"
-            android:id="@id/dummyTextView2"
-            android:layout_below="@id/stuRoll"
-            android:background="@color/colorPrimary">
-
-        </TextView>
-
-        <TextView
-            android:id="@id/registration"
+        <androidx.cardview.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/dummyTextView2"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="1dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:textSize="20dp"
-            android:gravity="center"
-            android:background="@color/colorPrimary"
-            android:textAllCaps="true"
-            android:textStyle="bold">
+            card_view:cardCornerRadius="15dp"
+            card_view:cardElevation="10dp">
 
-        </TextView>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@id/yearOfAdmission"
-            android:layout_below="@id/registration"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:gravity="left|center"
-            android:layout_marginTop="10dp"
-            android:textSize="17dp"
-            android:paddingLeft="20dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp"
+                    android:id="@id/dummyTextView">
 
-        </TextView>
+                </TextView>
 
-        <TextView
-            android:id="@id/course"
-            android:layout_below="@id/yearOfAdmission"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:gravity="left|center"
-            android:layout_marginTop="2dp"
-            android:textSize="17dp"
-            android:paddingLeft="20dp">
+                <ImageView
+                    android:id="@id/stuImage"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_below="@id/dummyTextView"
+                    android:layout_centerHorizontal="true">
 
-        </TextView>
+                </ImageView>
 
-        <TextView
-            android:id="@id/branch"
-            android:layout_below="@id/course"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:gravity="left|center"
-            android:layout_marginTop="2dp"
-            android:textSize="17dp"
-            android:paddingLeft="20dp">
+                <TextView
+                    android:id="@id/stuName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_below="@id/stuImage"
+                    android:textStyle="bold"
+                    android:textColor="@color/profileNameColor"
+                    android:gravity="center"
+                    android:textSize="25dp"
+                    android:layout_centerHorizontal="true">
 
-        </TextView>
-
-        <TextView
-            android:id="@id/currentSem"
-            android:layout_below="@id/branch"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:gravity="left|center"
-            android:layout_marginTop="2dp"
-            android:textSize="17dp"
-            android:paddingLeft="20dp">
-
-        </TextView>
-
-        <TextView
-            android:id="@id/enrollment"
-            android:layout_below="@id/currentSem"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:gravity="left|center"
-            android:layout_marginTop="2dp"
-            android:textSize="17dp"
-            android:paddingLeft="20dp">
-
-        </TextView>
-
-        <TextView
-            android:id="@id/personalDetails"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_below="@id/enrollment"
-            android:layout_marginTop="30dp"
-            android:textSize="20dp"
-            android:gravity="center"
-            android:background="@color/colorPrimary"
-            android:textAllCaps="true"
-            android:textStyle="bold">
-
-        </TextView>
-
-        <TextView
-            android:id="@id/studentName"
-            android:layout_below="@id/personalDetails"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:gravity="left|center"
-            android:layout_marginTop="2dp"
-            android:textSize="17dp"
-            android:paddingLeft="20dp">
-
-        </TextView>
-
-        <TextView
-            android:id="@id/dob"
-            android:layout_below="@id/studentName"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:gravity="left|center"
-            android:layout_marginTop="10dp"
-            android:textSize="17dp"
-            android:paddingLeft="20dp">
-
-        </TextView>
-
-        <TextView
-            android:id="@id/gender"
-            android:layout_below="@id/dob"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:gravity="left|center"
-            android:layout_marginTop="2dp"
-            android:textSize="17dp"
-            android:paddingLeft="20dp">
-
-        </TextView>
-
-        <TextView
-            android:id="@id/fatherName"
-            android:layout_below="@id/gender"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:gravity="left|center"
-            android:layout_marginTop="2dp"
-            android:textSize="17dp"
-            android:paddingLeft="20dp">
-
-        </TextView>
-
-        <TextView
-            android:id="@id/motherName"
-            android:layout_below="@id/fatherName"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:gravity="left|center"
-            android:layout_marginTop="2dp"
-            android:textSize="17dp"
-            android:paddingLeft="20dp">
-
-        </TextView>
+                </TextView>
 
 
-    </RelativeLayout>
+                <TextView
+                    android:id="@id/stuRoll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_below="@id/stuName"
+                    android:textStyle="bold"
+                    android:textColor="@color/profileNameColor"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:textSize="25dp">
+
+                </TextView>
 
 
-</ScrollView>
+
+                <TextView
+                    android:id="@id/registration"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/stuRoll"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:background="@color/colorPrimary"
+                    android:textAllCaps="true"
+                    android:textStyle="bold">
+
+                </TextView>
+
+                <TextView
+                    android:id="@id/yearOfAdmission"
+                    android:layout_below="@id/registration"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:gravity="left|center"
+                    android:layout_marginTop="10dp"
+                    android:textSize="17dp"
+                    android:paddingLeft="10dp">
+
+                </TextView>
+
+                <TextView
+                    android:id="@id/course"
+                    android:layout_below="@id/yearOfAdmission"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:gravity="left|center"
+                    android:layout_marginTop="2dp"
+                    android:textSize="17dp"
+                    android:paddingLeft="10dp">
+
+                </TextView>
+
+                <TextView
+                    android:id="@id/branch"
+                    android:layout_below="@id/course"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:gravity="left|center"
+                    android:layout_marginTop="2dp"
+                    android:textSize="17dp"
+                    android:paddingLeft="10dp">
+
+                </TextView>
+
+                <TextView
+                    android:id="@id/currentSem"
+                    android:layout_below="@id/branch"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:gravity="left|center"
+                    android:layout_marginTop="2dp"
+                    android:textSize="17dp"
+                    android:paddingLeft="10dp">
+
+                </TextView>
+
+                <TextView
+                    android:id="@id/enrollment"
+                    android:layout_below="@id/currentSem"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:gravity="left|center"
+                    android:layout_marginTop="2dp"
+                    android:textSize="17dp"
+                    android:paddingLeft="10dp">
+
+                </TextView>
+
+                <TextView
+                    android:id="@id/personalDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_below="@id/enrollment"
+                    android:layout_marginTop="30dp"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:background="@color/colorPrimary"
+                    android:textAllCaps="true"
+                    android:textStyle="bold">
+
+                </TextView>
+
+                <TextView
+                    android:id="@id/studentName"
+                    android:layout_below="@id/personalDetails"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:gravity="left|center"
+                    android:layout_marginTop="10dp"
+                    android:textSize="17dp"
+                    android:paddingLeft="10dp">
+
+                </TextView>
+
+                <TextView
+                    android:id="@id/dob"
+                    android:layout_below="@id/studentName"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:gravity="left|center"
+                    android:layout_marginTop="2dp"
+                    android:textSize="17dp"
+                    android:paddingLeft="10dp">
+
+                </TextView>
+
+                <TextView
+                    android:id="@id/gender"
+                    android:layout_below="@id/dob"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:gravity="left|center"
+                    android:layout_marginTop="2dp"
+                    android:textSize="17dp"
+                    android:paddingLeft="10dp">
+
+                </TextView>
+
+                <TextView
+                    android:id="@id/fatherName"
+                    android:layout_below="@id/gender"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:gravity="left|center"
+                    android:layout_marginTop="2dp"
+                    android:textSize="17dp"
+                    android:paddingLeft="10dp">
+
+                </TextView>
+
+                <TextView
+                    android:id="@id/motherName"
+                    android:layout_below="@id/fatherName"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:gravity="left|center"
+                    android:layout_marginTop="2dp"
+                    android:textSize="17dp"
+                    android:paddingLeft="10dp">
+
+                </TextView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp"
+                    android:layout_below="@id/motherName">
+
+                </TextView>
+
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+    </ScrollView>
+
+
+
+
+</LinearLayout>
