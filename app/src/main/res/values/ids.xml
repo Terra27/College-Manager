@@ -107,4 +107,115 @@
          type="id"
          name="downloadImage"
          />
+
+     <!--  Student Profile Window  -->
+
+
+     <!-- These ids are for student name and roll number and student image at the top  -->
+
+     <item
+         type="id"
+         name="dummyTextView"
+         />
+     <item
+         type="id"
+         name="stuImage"
+         />
+
+     <item
+         type="id"
+         name="stuName"
+         />
+     <item
+         type="id"
+         name="stuRoll"
+         />
+
+     <!-- Upto this part -->
+
+    <item
+         type="id"
+         name="registration"
+         />
+     <item
+         type="id"
+         name="yearOfAdmission"
+         />
+     <item
+         type="id"
+         name="course"
+         />
+     <item
+         type="id"
+         name="branch"
+         />
+     <item
+         type="id"
+         name="currentSem"
+         />
+     <item
+         type="id"
+         name="enrollment"
+         />
+     <item
+         type="id"
+         name="personalDetails"
+         />
+     <item
+         type="id"
+         name="studentName"
+         />
+     <item
+         type="id"
+         name="dob"
+         />
+     <item
+         type="id"
+         name="gender"
+         />
+     <item
+         type="id"
+         name="fatherName"
+         />
+     <item
+         type="id"
+         name="motherName"
+         />
+
+
+    <!-- Attendance Window  -->
+
+     <item
+         type="id"
+         name="attendanceList"
+         />
+
+     <item
+         type="id"
+         name="attendanceCard"
+         />
+     <item
+         type="id"
+         name="subCode"
+         />
+     <item
+         type="id"
+         name="attendance"
+         />
+     <item
+         type="id"
+         name="progressBar"
+         />
+     <item
+         type="id"
+         name="warningSign"
+         />
+     <item
+         type="id"
+         name="warningText"
+         />
+
+
+
+
 </resources>
