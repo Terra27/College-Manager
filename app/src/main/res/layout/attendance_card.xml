@@ -71,6 +71,7 @@
                 android:src="@drawable/warning">
             </ImageView>
             <TextView
+                android:id="@id/warningText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Your attendance is below 75%"
