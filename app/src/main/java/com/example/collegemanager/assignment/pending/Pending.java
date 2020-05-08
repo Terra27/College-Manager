@@ -23,7 +23,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
-import android.provider.OpenableColumns;
+import android.provider.DocumentsContract;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -31,11 +31,13 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Pending extends AppCompatActivity {
 
     private int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
     private int PICK_FILE_REQUEST_CODE = 23;
+    private int CREATE_FILE_REQUEST_CODE = 27;
 
     // Binding Status
     private ArrayList<ArrayList<String>> currResult = null;
@@ -46,6 +48,9 @@ public class Pending extends AppCompatActivity {
     // Global references to the ListView Adapter and ArrayList
     ArrayList<PendingItem> pendingItems;
     ItemAdapter itemAdapter;
+
+    // A Handler for posting instructions to the main thread
+    private Handler mainHandler = new Handler(Looper.getMainLooper());
 
     private boolean loading = false;
     private ImageView loader;
@@ -70,7 +75,7 @@ public class Pending extends AppCompatActivity {
                 boundService = binder.getServiceInstance();
 
                 // Fetch Database result as soon as binded
-                fetchDatabaseResult(Integer.parseInt(getIntent().getStringExtra("id")));
+                fetchDatabaseResult(Integer.parseInt(Objects.requireNonNull(getIntent().getStringExtra("id"))));
             }
         }
 
@@ -85,10 +90,13 @@ public class Pending extends AppCompatActivity {
     };
 
     private String professorName = null;
+    private int latestClickedPosition = 0;
     protected class ClickListener implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
 
         public void onItemClick(AdapterView parent, View clickedItem, int position, long id) {
 
+
+            latestClickedPosition = position;
 
             clickedItem.findViewById(R.id.itemPending).setBackgroundColor(getResources().getColor(R.color.cardClickColor));
             // If you define the run() method in this thread, then call it after a loop of x seconds, all the other
@@ -107,28 +115,22 @@ public class Pending extends AppCompatActivity {
                 }
             }.start();
 
-            Intent intent = new Intent(getApplicationContext(), DownloadStarter.class);
-            intent.putExtra("fileName", itemAdapter.getItem(position).pendingFileName);
-            intent.putExtra("fileSize", itemAdapter.getItem(position).pendingFileSize);
-            professorName = itemAdapter.getItem(position).pendingProfessor;
+            Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
+            intent.addCategory(Intent.CATEGORY_OPENABLE);
+            intent.setType("application/pdf");
 
-            startService(intent);
-
-            /*
-            if ( FILE_SIZE > 4*1024*1024 ) // We have the time to Bind.
-                bindService(intent, abstractConnection, BIND_AUTO_CREATE);
-            }
-
-             */
+            startActivityForResult(Intent.createChooser( intent, "Where do you wish to save your assignment?" ), CREATE_FILE_REQUEST_CODE);
         }
 
         public boolean onItemLongClick(AdapterView parent, View clickedItem, int position, long id) {
 
+            latestClickedPosition = position;
+            
             Intent chooseFile = new Intent(Intent.ACTION_GET_CONTENT);
             chooseFile.setType("*/*");
             chooseFile.addCategory(Intent.CATEGORY_OPENABLE);
 
-            Intent chooseFileWrapper = Intent.createChooser(chooseFile, "Choose a file");
+            Intent chooseFileWrapper = Intent.createChooser(chooseFile, "Where is your assignment located?");
             professorName = itemAdapter.getItem(position).pendingProfessor;
 
             startActivityForResult(chooseFileWrapper, PICK_FILE_REQUEST_CODE);
@@ -190,7 +192,7 @@ public class Pending extends AppCompatActivity {
                         int CLASS_ID = Integer.parseInt(currResult.get(i).get(7));
                         int icon = Integer.parseInt(currResult.get(i).get(8));
 
-                        // Convert to Kilobyte
+                        // Convert Kilobytes to Bytes
                         if (filetype == 2)
                             FILE_SIZE = FILE_SIZE * 1024;
 
@@ -214,7 +216,7 @@ public class Pending extends AppCompatActivity {
 
     // Schedule these instructions on the main thread using the Looper
     private void postToMain(int instructionID, boolean showAlert) {
-        new Handler(Looper.getMainLooper()).post(new Runnable() {
+        mainHandler.post(new Runnable() {
             @Override
             public void run() {
                 switch (instructionID) {
@@ -226,7 +228,7 @@ public class Pending extends AppCompatActivity {
     }
 
     private void postToMain(int instructionID) {
-        new Handler(Looper.getMainLooper()).post(new Runnable() {
+        mainHandler.post(new Runnable() {
             @Override
             public void run() {
                 switch (instructionID) {
@@ -299,7 +301,7 @@ public class Pending extends AppCompatActivity {
             }
         }
     }
-
+                                                                    // Not the intent that was passed to startActivityForResult.
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PICK_FILE_REQUEST_CODE) {
@@ -315,22 +317,43 @@ public class Pending extends AppCompatActivity {
                 startService(intent);
             }
         }
+        else if ( requestCode == CREATE_FILE_REQUEST_CODE ) {
+            if ( resultCode == RESULT_OK ) {
+
+                Intent intent = new Intent(getApplicationContext(), DownloadStarter.class);
+                // Set URI
+                Uri uri = data.getData();
+                intent.setData(uri);
+
+                int position = latestClickedPosition;
+                intent.putExtra("fileName", itemAdapter.getItem(position).pendingFileName);
+                intent.putExtra("fileSize", itemAdapter.getItem(position).pendingFileSize);
+
+                startService(intent);
+            }
+        }
     }
 
     private String getFileNameFromUri(Uri uri) {
         String result = null;
+
+        // File is managed by a Content Provider
         if (uri.getScheme().equals("content")) {
-            Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+            // Query the content provider to get the value of the COLUMN_DISPLAY_NAME column
+            Cursor cursor = getContentResolver().query(uri, new String[] { DocumentsContract.Document.COLUMN_DISPLAY_NAME }, null, null, null);
             try {
                 if (cursor != null && cursor.moveToFirst()) {
-                    result = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+                    result = cursor.getString(0);
                 }
             } finally {
                 cursor.close();
             }
         }
+
+        // File not managed by a Content provider
         if (result == null) {
             result = uri.getPath();
+            // The MIME type included at the end of the path includes file extension after the last occurrence of /
             int cut = result.lastIndexOf('/');
             if (cut != -1) {
                 result = result.substring(cut + 1);
