@@ -3,6 +3,7 @@ package com.example.collegemanager;
 import android.app.IntentService;
 import android.app.Notification;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Binder;
 import android.os.Environment;
 import android.os.Handler;
@@ -36,7 +37,10 @@ public class DownloadStarter extends IntentService {
     private static final int BUFFER_SIZE = 8*1024; // bytes
 
     // Method getExternalStoragePublicDirectory has become deprecated with API 29, so this might not work with future android versions.
-    private static final File FILE_PATH = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+    //private static final File FILE_PATH = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+
+    // Hence, we will use the ACTION_CREATE_DOCUMENT Intent to allow the user to specify a file path
+    private Uri FILE_PATH = null;
 
     // Provided by Database
     private String FILE_NAME;
@@ -64,6 +68,7 @@ public class DownloadStarter extends IntentService {
 
             FILE_NAME = intent.getStringExtra("fileName");
             PROGRESS_MAX =  intent.getIntExtra("fileSize", 0);
+            FILE_PATH = intent.getData();
 
             System.out.println(FILE_NAME + " "+ PROGRESS_MAX/1024);
 
@@ -122,8 +127,8 @@ public class DownloadStarter extends IntentService {
                 BufferedInputStream bufferedInput = new BufferedInputStream(clientSocket.getInputStream(), BUFFER_SIZE);
 
                 System.out.println("Creating file " + FILE_NAME + " on client at " + FILE_PATH + ".");
-                File outputFile = new File(FILE_PATH, FILE_NAME);
-                BufferedOutputStream bufferedFileOutput = new BufferedOutputStream(new FileOutputStream(outputFile), BUFFER_SIZE);
+                //File outputFile = new File(FILE_PATH, FILE_NAME);
+                BufferedOutputStream bufferedFileOutput = new BufferedOutputStream( getContentResolver().openOutputStream(FILE_PATH), BUFFER_SIZE);
 
                 System.out.println("Copying file from server..");
 

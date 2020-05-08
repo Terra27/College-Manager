@@ -38,6 +38,12 @@
         <activity
             android:name=".assignment.pending.Pending"
             android:theme="@style/CustomTheme" />
+        <activity
+            android:name=".profile.StudentDetails"
+            android:theme="@style/CustomTheme" />
+        <activity
+            android:name=".attendance.Attendance"
+            android:theme="@style/CustomTheme" />
 
         <service
             android:name=".UploadStarter"

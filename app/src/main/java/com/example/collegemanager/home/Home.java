@@ -12,6 +12,8 @@ import android.widget.Toast;
 import com.example.collegemanager.GlobalKeys;
 import com.example.collegemanager.R;
 import com.example.collegemanager.assignment.Assignment;
+import com.example.collegemanager.attendance.Attendance;
+import com.example.collegemanager.profile.StudentDetails;
 
 import java.util.ArrayList;
 
@@ -40,16 +42,26 @@ public class Home extends AppCompatActivity {
                 }
             }.start();
 
-            if ( viewID == 4 ) {
-                Intent assignment = new Intent(getApplicationContext(), Assignment.class);
+            switch (viewID) {
+                case 4:
+                    Intent assignment = new Intent(getApplicationContext(), Assignment.class);
 
-                // Take the data this activity has and pass it to the next
-                Intent data = getIntent();
-                for ( int i= 0; i < GlobalKeys.dataKeys.length; i++) {
-                    assignment.putExtra(GlobalKeys.dataKeys[i], data.getStringExtra(GlobalKeys.dataKeys[i]));
-                }
+                    // Take the data this activity has and pass it to the next
+                    Intent data = getIntent();
+                    for ( int i= 0; i < GlobalKeys.dataKeys.length; i++) {
+                        assignment.putExtra(GlobalKeys.dataKeys[i], data.getStringExtra(GlobalKeys.dataKeys[i]));
+                    }
 
-                startActivity(assignment);
+                    startActivity(assignment);
+                    break;
+                case 1:
+                    Intent profile = new Intent(getApplicationContext(), StudentDetails.class);
+                    startActivity(profile);
+                    break;
+                case 2:
+                    Intent attendance = new Intent(getApplicationContext(), Attendance.class);
+                    startActivity(attendance);
+                    break;
             }
         }
     }

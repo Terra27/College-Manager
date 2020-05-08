@@ -6,4 +6,8 @@
 
     <color name="cardClickColor">#D6A1A1</color>
     <color name="cardIdleColor">#fafafa</color>
+
+    <color name="profileNameColor">#000000</color>
+    <color name="warningTextColor">#FF1100</color>
+    <color name="progressBarColor">#FF048E06</color>
 </resources>
