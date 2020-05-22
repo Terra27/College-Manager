@@ -119,21 +119,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    //private static final int PICK_FILE = 27;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        /*
-        //Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-        Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("text/plain");
-
-        startActivityForResult(intent, PICK_FILE);
-        */
 
         // Bind to the Database Handler
         Intent databaseService = new Intent(getApplicationContext(), DatabaseHandler.class);
