@@ -22,22 +22,12 @@ import com.example.collegemanager.UploadStarter;
 
 public class ItemAdapter extends BaseAdapter {
 
-    private Pending.ClickListener parentActivityClickListener;
-    private AppCompatActivity parentActivity;
-
     private Context context; //context
     private ArrayList<PendingItem> items; //data source of the list adapter
 
     public ItemAdapter(Context context, ArrayList<PendingItem> items) {
         this.context = context;
         this.items = items;
-    }
-
-    public ItemAdapter(Context context, ArrayList<PendingItem> items, Pending.ClickListener listener, AppCompatActivity activity) {
-        this.context = context;
-        this.items = items;
-        parentActivityClickListener = listener;
-        parentActivity = activity;
     }
 
     @Override
@@ -81,13 +71,13 @@ public class ItemAdapter extends BaseAdapter {
         ImageView itemImage = (ImageView)convertView.findViewById(R.id.subjectImage);
         itemImage.setImageResource(item.pendingImage);
 
-        ListView itemList = (ListView)parentActivity.findViewById(R.id.pendingList);
+        //ListView itemList = (ListView)parentActivity.findViewById(R.id.pendingList);
 
         // File Upload
-        itemList.setOnItemLongClickListener(parentActivityClickListener);
+        //itemList.setOnItemLongClickListener(parentActivityClickListener);
 
         // File Download
-        itemList.setOnItemClickListener(parentActivityClickListener);
+        //itemList.setOnItemClickListener(parentActivityClickListener);
 
         return convertView;
     }

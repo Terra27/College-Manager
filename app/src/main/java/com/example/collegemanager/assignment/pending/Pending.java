@@ -91,29 +91,11 @@ public class Pending extends AppCompatActivity {
 
     private String professorName = null;
     private int latestClickedPosition = 0;
-    protected class ClickListener implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
+    private class ClickListener implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
 
         public void onItemClick(AdapterView parent, View clickedItem, int position, long id) {
 
-
             latestClickedPosition = position;
-
-            clickedItem.findViewById(R.id.itemPending).setBackgroundColor(getResources().getColor(R.color.cardClickColor));
-            // If you define the run() method in this thread, then call it after a loop of x seconds, all the other
-            // instructions scheduled on this thread also execute after x seconds, why is this happening?
-
-            // Timer thread for reverting the color.
-            new Thread ( ) {
-                public void run( ) {
-                    try {
-                        Thread.sleep(150);
-                        clickedItem.findViewById(R.id.itemPending).setBackgroundColor(getResources().getColor(R.color.cardIdleColor));
-                    }
-                    catch ( InterruptedException e) {
-                        System.out.println(e.getMessage());
-                    }
-                }
-            }.start();
 
             Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
             intent.addCategory(Intent.CATEGORY_OPENABLE);
@@ -145,11 +127,17 @@ public class Pending extends AppCompatActivity {
 
         // Create the Array and the Adapter that manages it.
         pendingItems = new ArrayList<PendingItem>();
-        itemAdapter = new ItemAdapter(getApplicationContext(), pendingItems, new ClickListener(), this);
+        itemAdapter = new ItemAdapter(getApplicationContext(), pendingItems);
 
         // Assign created Adapter to ListView
         ListView pendingAList = (ListView) findViewById(R.id.pendingList);
         pendingAList.setAdapter(itemAdapter);
+
+        // File Upload
+        pendingAList.setOnItemLongClickListener(new ClickListener());
+
+        // File Download
+        pendingAList.setOnItemClickListener(new ClickListener());
 
         // Bind to the Database Handler
         Intent databaseService = new Intent(getApplicationContext(), DatabaseHandler.class);
