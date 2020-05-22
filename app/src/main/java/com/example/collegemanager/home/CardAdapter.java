@@ -29,7 +29,7 @@ public class CardAdapter extends ArrayAdapter<HomeOptions> {
     public View getView(int position, View convertView, ViewGroup parent) {
 
        // Get a reference to the HomeOptions object in the ArrayList at position.
-        final HomeOptions option = getItem(position);
+        HomeOptions option = getItem(position);
 
         // Inflate the Layout specified in option_card.xml to memory, the root element of the layout is returned.
         if ( convertView == null )
@@ -43,8 +43,8 @@ public class CardAdapter extends ArrayAdapter<HomeOptions> {
         optionImage.setImageResource(option.optionPicture);
 
         // Add a listener to the card within the list entry.
-        CardView optionCard = (CardView)convertView.findViewById(R.id.optionCard);
-        optionCard.setOnClickListener(option.getOptionListener());
+       // CardView optionCard = (CardView)convertView.findViewById(R.id.optionCard);
+        //optionCard.setOnItemClickListener(option.getOptionListener());
 
         return convertView;
     }
