@@ -95,8 +95,9 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = new Intent(getApplicationContext(), Home.class);
 
                         // Pack this data into the intent and pass to the next activity so that we don't have to fetch it multiple times
-                        for ( int i= 0; i < GlobalKeys.dataKeys.length; i++) {
+                        for ( int i = 0; i < GlobalKeys.dataKeys.length; i++) {
                             if ( i == 4 ) {
+                                // outputs 2016-01-01 for some reason
                                 intent.putExtra(GlobalKeys.dataKeys[i], currResult.get(0).get(i).substring(0, currResult.get(0).get(i).indexOf('-')));
                                 continue;
                             }
