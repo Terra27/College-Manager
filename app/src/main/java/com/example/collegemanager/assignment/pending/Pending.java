@@ -9,6 +9,8 @@ import com.example.collegemanager.DownloadStarter;
 import com.example.collegemanager.UploadStarter;
 import com.example.collegemanager.DatabaseHandler;
 import com.example.collegemanager.DatabaseHandler.MessageInterface;
+import com.example.collegemanager.assignment.AssignmentAdapter;
+import com.example.collegemanager.assignment.AssignmentItem;
 
 import android.Manifest;
 
@@ -33,6 +35,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import static com.example.collegemanager.Helper.getFileNameFromUri;
+
 public class Pending extends AppCompatActivity {
 
     private int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
@@ -46,8 +50,8 @@ public class Pending extends AppCompatActivity {
     private boolean activityBinded = false;
 
     // Global references to the ListView Adapter and ArrayList
-    ArrayList<PendingItem> pendingItems;
-    ItemAdapter itemAdapter;
+    ArrayList<AssignmentItem> pendingItems;
+    AssignmentAdapter itemAdapter;
 
     // A Handler for posting instructions to the main thread
     private Handler mainHandler = new Handler(Looper.getMainLooper());
@@ -113,7 +117,7 @@ public class Pending extends AppCompatActivity {
             chooseFile.addCategory(Intent.CATEGORY_OPENABLE);
 
             Intent chooseFileWrapper = Intent.createChooser(chooseFile, "Where is your assignment located?");
-            professorName = itemAdapter.getItem(position).pendingProfessor;
+            professorName = itemAdapter.getItem(position).assignmentProfessor;
 
             startActivityForResult(chooseFileWrapper, PICK_FILE_REQUEST_CODE);
 
@@ -126,8 +130,8 @@ public class Pending extends AppCompatActivity {
         setContentView(R.layout.activity_pending);
 
         // Create the Array and the Adapter that manages it.
-        pendingItems = new ArrayList<PendingItem>();
-        itemAdapter = new ItemAdapter(getApplicationContext(), pendingItems);
+        pendingItems = new ArrayList<AssignmentItem>();
+        itemAdapter = new AssignmentAdapter(getApplicationContext(), pendingItems);
 
         // Assign created Adapter to ListView
         ListView pendingAList = (ListView) findViewById(R.id.pendingList);
@@ -159,7 +163,7 @@ public class Pending extends AppCompatActivity {
 
                 // setLoader();
                 postToMain(1);
-                currResult = boundService.selectQuery("SELECT A.assignmentid, facultyid, title, due, filesize, filetype, fileurl, classid, branch FROM hassubmitted AS T, assignments AS A WHERE T.assignmentid = A. assignmentid AND T.studentid="+ studentID +" AND T.status=1");
+                currResult = boundService.executeQuery("SELECT A.assignmentid, facultyid, title, due, filesize, filetype, fileurl, classid, branch FROM hassubmitted AS T, assignments AS A WHERE T.assignmentid = A.assignmentid AND T.studentid="+ studentID +" AND T.status=1", 0);
                 if (currResult != null) {
 
                     // removeLoader();
@@ -184,7 +188,7 @@ public class Pending extends AppCompatActivity {
                         if (filetype == 2)
                             FILE_SIZE = FILE_SIZE * 1024;
 
-                        pendingItems.add(new PendingItem(id, branches[icon - 1], title, due, facultyname, FILE_SIZE, FILE_NAME, CLASS_ID));
+                        pendingItems.add(new AssignmentItem(id, branches[icon - 1], title, due, facultyname, FILE_SIZE, FILE_NAME, CLASS_ID));
                         i++;
                     }
 
@@ -299,7 +303,7 @@ public class Pending extends AppCompatActivity {
                 // Set URI
                 Uri uri = data.getData();
                 intent.setData(uri);
-                intent.putExtra("fileName", getFileNameFromUri(uri));
+                intent.putExtra("fileName", getFileNameFromUri(uri, getContentResolver()));
                 intent.putExtra("professorName", professorName);
 
                 startService(intent);
@@ -314,40 +318,11 @@ public class Pending extends AppCompatActivity {
                 intent.setData(uri);
 
                 int position = latestClickedPosition;
-                intent.putExtra("fileName", itemAdapter.getItem(position).pendingFileName);
-                intent.putExtra("fileSize", itemAdapter.getItem(position).pendingFileSize);
+                intent.putExtra("fileName", itemAdapter.getItem(position).assignmentFileName);
+                intent.putExtra("fileSize", itemAdapter.getItem(position).assignmentFileSize);
 
                 startService(intent);
             }
         }
-    }
-
-    private String getFileNameFromUri(Uri uri) {
-        String result = null;
-
-        // File is managed by a Content Provider
-        if (uri.getScheme().equals("content")) {
-            // Query the content provider to get the value of the COLUMN_DISPLAY_NAME column
-            Cursor cursor = getContentResolver().query(uri, new String[] { DocumentsContract.Document.COLUMN_DISPLAY_NAME }, null, null, null);
-            try {
-                if (cursor != null && cursor.moveToFirst()) {
-                    result = cursor.getString(0);
-                }
-            } finally {
-                cursor.close();
-            }
-        }
-
-        // File not managed by a Content provider
-        if (result == null) {
-            result = uri.getPath();
-            // The MIME type included at the end of the path includes file extension after the last occurrence of /
-            int cut = result.lastIndexOf('/');
-            if (cut != -1) {
-                result = result.substring(cut + 1);
-            }
-        }
-
-        return result;
     }
 }
