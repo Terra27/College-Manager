@@ -111,7 +111,7 @@ public class UploadStarter extends IntentService {
 
 
                             PROGRESS_CURR = PROGRESS_CURR + bytesRead;
-                            if ( PROGRESS_CURR < PROGRESS_MAX ) {
+                            if ( PROGRESS_CURR <= PROGRESS_MAX ) {
                                 notificationBuilder.setProgress(PROGRESS_MAX, PROGRESS_CURR, false);
                                 startForeground(notificationID, notificationBuilder.build());
                             }
