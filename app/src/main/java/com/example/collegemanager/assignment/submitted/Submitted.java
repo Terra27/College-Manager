@@ -9,8 +9,11 @@ import com.example.collegemanager.assignment.AssignmentItem;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.net.Uri;
 import android.os.Bundle;
@@ -59,6 +62,8 @@ public class Submitted extends AppCompatActivity {
 
     private HandlerThread rpcThread;
     private Handler rpcHandler;
+
+    private UploadReceiver uploadReceiver;
 
     /* NESTED CLASSES */
     private class ClickListener implements AdapterView.OnItemClickListener {
@@ -133,25 +138,23 @@ public class Submitted extends AppCompatActivity {
         bindService(databaseService, abstractConnection, BIND_AUTO_CREATE);
     }
 
+
     @Override
-    protected void onStop() {
-        super.onStop();
+    protected void onDestroy() {
+        super.onDestroy();
 
         if ( activityBinded ) {
             unbindService(abstractConnection);
             activityBinded = false;
         }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
 
         // Ensure no thread leakage occurs if the user decides to quit midway
         loading = false;
 
         if ( rpcThread.isAlive() )
             rpcThread.quit();
+
+        this.unregisterReceiver(uploadReceiver);
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -166,24 +169,37 @@ public class Submitted extends AppCompatActivity {
                 intent.putExtra("fileName", getFileNameFromUri(uri, getContentResolver()));
                 intent.putExtra("professorName", professorName);
 
+                intent.putExtra("studentid", Integer.parseInt(getIntent().getStringExtra("id")));
+                intent.putExtra("assignmentid", lastClickedAssignment.assignmentID);
+
                 startService(intent);
 
-                // to be executed after a broadcast is received confirming that file uploaded successfully
-                rpcHandler.post( new Runnable() {
+                // A receiver for updating the TextView for Submission date
+                uploadReceiver = new UploadReceiver();
+                IntentFilter filter = new IntentFilter();
+                filter.addAction("com.example.collegemanager.UPLOAD_COMPLETE");
+
+                this.registerReceiver(uploadReceiver, filter);
+            }
+        }
+    }
+
+    /* BROADCAST RECEIVER */
+    public class UploadReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if ( intent.getAction().equals("com.example.collegemanager.UPLOAD_COMPLETE") ) {
+
+                String pattern = "yyyy-MM-dd HH:mm:ss";
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+
+                String currentDateTime = simpleDateFormat.format(new Date());
+
+                mainHandler.post( new Runnable() {
                     public void run() {
-
-                        String pattern = "yyyy-MM-dd HH:mm:ss";
-                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-
-                        String currentDateTime = simpleDateFormat.format(new Date());
-                        boundService.executeQuery("UPDATE hassubmitted SET submittime='" + currentDateTime + "' WHERE studentid=" + Integer.parseInt(getIntent().getStringExtra("id")) + " AND assignmentid=" + lastClickedAssignment.assignmentID + "", 1);
-
-                        mainHandler.post( new Runnable() {
-                            public void run() {
-                                TextView text = (TextView)lastClickedView.findViewById((R.id.assignmentDueDate));
-                                text.setText("Submitted on: " + currentDateTime);
-                            }
-                        });
+                        TextView text = (TextView)lastClickedView.findViewById((R.id.assignmentDueDate));
+                        text.setText("Submitted on: " + currentDateTime);
                     }
                 });
             }
