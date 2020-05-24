@@ -4,6 +4,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.Handler;
+import android.os.HandlerThread;
 import android.os.IBinder;
 import android.os.Looper;
 import android.widget.Toast;
@@ -17,7 +18,9 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
 import java.net.SocketTimeoutException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class DatabaseHandler extends Service {
     public DatabaseHandler() {
@@ -50,6 +53,43 @@ public class DatabaseHandler extends Service {
         return new MessageInterface();
     }
 
+    // For unbinded interaction, such as executing a one-time SQL query
+    private HandlerThread rpcThread;
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+
+       String message = intent.getStringExtra("message");
+        if ( message.equals("UploadComplete") ) {
+
+            rpcThread = new HandlerThread("ReceiverRPCThread");
+            rpcThread.start();
+
+            new Handler( rpcThread.getLooper() ).post(new Runnable() {
+                @Override
+                public void run() {
+
+                    String pattern = "yyyy-MM-dd HH:mm:ss";
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+
+                    String currentDateTime = simpleDateFormat.format(new Date());
+                    executeQuery("UPDATE hassubmitted SET submittime='" + currentDateTime + "' WHERE studentid=" + intent.getIntExtra("studentid", 0) + " AND assignmentid=" + intent.getIntExtra("assignmentid", 0) + "", 1);
+
+                    stopSelf(); // Incase the binded Activity doesn't exist anymore (user quit), we must stop the service ourselves.
+                    rpcThread.quit();
+                }
+            });
+        }
+
+        return START_NOT_STICKY;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        //System.out.println("Destroying service.");
+    }
+
     private void showToast(final String toastText ) {
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
@@ -75,7 +115,7 @@ public class DatabaseHandler extends Service {
             clientSocket.connect(socketAddress, TIMEOUT);
 
             if (clientSocket != null) {
-                System.out.println("Connection Established.");
+                System.out.println("DATABASE HANDLER: Connection Established.");
 
                 PrintWriter queryWriter = new PrintWriter(clientSocket.getOutputStream());
                 BufferedReader resultReader = new BufferedReader(new InputStreamReader((clientSocket.getInputStream())));
