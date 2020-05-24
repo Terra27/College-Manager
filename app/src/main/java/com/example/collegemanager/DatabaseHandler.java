@@ -61,10 +61,10 @@ public class DatabaseHandler extends Service {
     }
 
     // All these methods are called via RPC on manually created threads, to avoid blocking the main thread
-    public ArrayList<ArrayList<String>> selectQuery (String query) {
+    public ArrayList<ArrayList<String>> executeQuery (String query, int queryType) {
 
         String resultString = null;
-        ArrayList<ArrayList<String>> resultTable = null;
+        ArrayList<ArrayList<String>> resultTable = new ArrayList<ArrayList<String>>();
         try {
 
             // connection() method is used instead of the Socket() constructor to allow timeout.
@@ -79,6 +79,9 @@ public class DatabaseHandler extends Service {
 
                 PrintWriter queryWriter = new PrintWriter(clientSocket.getOutputStream());
                 BufferedReader resultReader = new BufferedReader(new InputStreamReader((clientSocket.getInputStream())));
+
+                queryWriter.println(queryType); // SELECT or UPDATE
+                queryWriter.flush();
 
                 queryWriter.println(query);
                 queryWriter.flush();
@@ -97,6 +100,7 @@ public class DatabaseHandler extends Service {
         catch( SocketTimeoutException e )
         {
             showToast("Connection Timed out.");
+            return null; // Null implies connection error, empty resultTable implies empty result.
         }
         catch ( IOException e ) {
             System.out.println(e.getMessage());
@@ -104,8 +108,6 @@ public class DatabaseHandler extends Service {
 
         // Extract data from the string and create a 2D ArrayList
         if ( resultString != null && resultString.length() > 0 ) {
-
-            resultTable = new ArrayList<ArrayList<String>>();
 
             int i = 1;
             char lastChar = resultString.charAt(0);
