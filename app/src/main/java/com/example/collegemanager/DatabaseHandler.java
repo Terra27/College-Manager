@@ -72,7 +72,7 @@ public class DatabaseHandler extends Service {
                     SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 
                     String currentDateTime = simpleDateFormat.format(new Date());
-                    executeQuery("UPDATE hassubmitted SET submittime='" + currentDateTime + "' WHERE studentid=" + intent.getIntExtra("studentid", 0) + " AND assignmentid=" + intent.getIntExtra("assignmentid", 0) + "", 1);
+                    executeQuery("UPDATE hassubmitted SET submittime='" + currentDateTime + "', status=0 WHERE studentid=" + intent.getIntExtra("studentid", 0) + " AND assignmentid=" + intent.getIntExtra("assignmentid", 0) + "", 1);
 
                     stopSelf(); // Incase the binded Activity doesn't exist anymore (user quit), we must stop the service ourselves.
                     rpcThread.quit();

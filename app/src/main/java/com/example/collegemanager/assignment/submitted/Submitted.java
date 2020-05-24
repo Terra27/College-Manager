@@ -63,7 +63,7 @@ public class Submitted extends AppCompatActivity {
     private HandlerThread rpcThread;
     private Handler rpcHandler;
 
-    private UploadReceiver uploadReceiver;
+    private SubmitUploadReceiver uploadReceiver;
 
     /* NESTED CLASSES */
     private class ClickListener implements AdapterView.OnItemClickListener {
@@ -95,14 +95,14 @@ public class Submitted extends AppCompatActivity {
 
                 // Blocking RPC calls to Service methods must be performed in separate thread
                 if ( ( rpcThread == null ) ) {
-                    rpcThread = new HandlerThread("RPCThread");
+                    rpcThread = new HandlerThread("SubmittedRPCThread");
                     rpcThread.start();
 
                     rpcHandler = new Handler(rpcThread.getLooper());
                 }
 
                 // Fetch Database result as soon as binded
-                fetchPendingAssignments(Integer.parseInt(Objects.requireNonNull(getIntent().getStringExtra("id"))));
+                fetchSubmittedAssignments(Integer.parseInt(Objects.requireNonNull(getIntent().getStringExtra("id"))));
             }
         }
 
@@ -121,6 +121,12 @@ public class Submitted extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submitted);
+
+        loader = findViewById(R.id.loader);
+        alert = findViewById(R.id.alert);
+        errorText = findViewById(R.id.networkErrorText);
+        info = findViewById(R.id.info);
+        emptyText = findViewById(R.id.emptyText);
 
         // Create the Array and the Adapter that manages it.
         submittedItems = new ArrayList<AssignmentItem>();
@@ -154,7 +160,8 @@ public class Submitted extends AppCompatActivity {
         if ( rpcThread.isAlive() )
             rpcThread.quit();
 
-        this.unregisterReceiver(uploadReceiver);
+        if ( uploadReceiver != null )
+            this.unregisterReceiver(uploadReceiver);
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -172,20 +179,20 @@ public class Submitted extends AppCompatActivity {
                 intent.putExtra("studentid", Integer.parseInt(getIntent().getStringExtra("id")));
                 intent.putExtra("assignmentid", lastClickedAssignment.assignmentID);
 
-                startService(intent);
-
                 // A receiver for updating the TextView for Submission date
-                uploadReceiver = new UploadReceiver();
+                uploadReceiver = new SubmitUploadReceiver();
                 IntentFilter filter = new IntentFilter();
                 filter.addAction("com.example.collegemanager.UPLOAD_COMPLETE");
 
                 this.registerReceiver(uploadReceiver, filter);
+
+                startService(intent);
             }
         }
     }
 
     /* BROADCAST RECEIVER */
-    public class UploadReceiver extends BroadcastReceiver {
+    public class SubmitUploadReceiver extends BroadcastReceiver {
 
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -196,12 +203,8 @@ public class Submitted extends AppCompatActivity {
 
                 String currentDateTime = simpleDateFormat.format(new Date());
 
-                mainHandler.post( new Runnable() {
-                    public void run() {
-                        TextView text = (TextView)lastClickedView.findViewById((R.id.assignmentDueDate));
-                        text.setText("Submitted on: " + currentDateTime);
-                    }
-                });
+               TextView text = (TextView)lastClickedView.findViewById((R.id.assignmentDueDate));
+               text.setText("Submitted on: " + currentDateTime);
             }
         }
     }
@@ -209,14 +212,8 @@ public class Submitted extends AppCompatActivity {
     /* INTERNAL METHODS */
 
     // Fetch Pending Assignment Details from the Database
-    private void fetchPendingAssignments( int studentID ) {
-        loader = findViewById(R.id.loader);
-        alert = findViewById(R.id.alert);
-        errorText = findViewById(R.id.networkErrorText);
-        info = findViewById(R.id.info);
-        emptyText = findViewById(R.id.emptyText);
+    private void fetchSubmittedAssignments( int studentID ) {
 
-        loading = true;
         startLoaderAnimation();
 
         rpcHandler.post( new Runnable() {
@@ -258,11 +255,13 @@ public class Submitted extends AppCompatActivity {
 
                     postToMain( 1 ); // notifyDataSetChanged()
 
-                } else if ( ( currResult != null ) && ( currResult.size() == 0 ) ) { // Empty Result
+                }
+                else if ( ( currResult != null ) && ( currResult.size() == 0 ) ) { // Empty Result
 
                     postToMain( 4 );
 
-                } else { // Network Error
+                }
+                else { // Network Error
 
                    postToMain( 3 );
                 }
@@ -271,6 +270,8 @@ public class Submitted extends AppCompatActivity {
     }
 
     private void startLoaderAnimation( ) {
+
+        loading = true;
 
         new Thread () {
             public void run() {

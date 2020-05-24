@@ -15,7 +15,6 @@ public class UploadDownloadReceiver extends BroadcastReceiver {
             databaseService.putExtra("studentid", intent.getIntExtra("studentid", 0) );
             databaseService.putExtra("assignmentid", intent.getIntExtra("assignmentid", 0));
 
-
             context.getApplicationContext().startService(databaseService);
         }
         else if ( intent.getAction().equals("com.example.collegemanager.DOWNLOAD_COMPLETE") ) {
