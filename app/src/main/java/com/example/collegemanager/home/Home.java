@@ -33,25 +33,34 @@ public class Home extends AppCompatActivity {
 
             int viewID = position + 1;
             switch (viewID) {
-                case 4:
+                case 4: {
                     Intent assignment = new Intent(getApplicationContext(), Assignment.class);
 
                     // Take the data this activity has and pass it to the next
                     Intent data = getIntent();
-                    for ( int i= 0; i < GlobalKeys.dataKeys.length; i++) {
+                    for (int i = 0; i < GlobalKeys.dataKeys.length; i++) {
                         assignment.putExtra(GlobalKeys.dataKeys[i], data.getStringExtra(GlobalKeys.dataKeys[i]));
                     }
 
                     startActivity(assignment);
                     break;
-                case 1:
+                }
+                case 1: {
                     Intent profile = new Intent(getApplicationContext(), StudentDetails.class);
+
+                    Intent data = getIntent();
+                    for (int i = 0; i < GlobalKeys.dataKeys.length; i++) {
+                        profile.putExtra(GlobalKeys.dataKeys[i], data.getStringExtra(GlobalKeys.dataKeys[i]));
+                    }
+
                     startActivity(profile);
                     break;
-                case 2:
+                }
+                case 2: {
                     Intent attendance = new Intent(getApplicationContext(), Attendance.class);
                     startActivity(attendance);
                     break;
+                }
             }
         }
     }

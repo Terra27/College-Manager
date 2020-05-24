@@ -194,8 +194,15 @@
          type="id"
          name="motherName"
          />
+     <item
+         type="id"
+         name="takenSubjects"
+      />
 
-
+     <item
+         type="id"
+         name="subjectList"
+     />
     <!-- Attendance Window  -->
 
      <item

@@ -26,7 +26,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="15dp"
-                    android:id="@id/dummyTextView">
+                    android:id="@+id/dummyTextView">
 
                 </TextView>
 
@@ -42,16 +42,13 @@
                 <TextView
                     android:id="@id/stuName"
                     android:layout_width="wrap_content"
-                    android:layout_height="50dp"
+                    android:layout_height="30dp"
                     android:layout_below="@id/stuImage"
                     android:textStyle="bold"
                     android:textColor="@color/profileNameColor"
-                    android:gravity="center"
                     android:textSize="25dp"
                     android:layout_centerHorizontal="true">
-
                 </TextView>
-
 
                 <TextView
                     android:id="@id/stuRoll"
@@ -61,24 +58,21 @@
                     android:textStyle="bold"
                     android:textColor="@color/profileNameColor"
                     android:layout_centerHorizontal="true"
-                    android:gravity="center"
                     android:textSize="25dp">
-
                 </TextView>
-
-
 
                 <TextView
                     android:id="@id/registration"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/stuRoll"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:textSize="20dp"
                     android:gravity="center"
                     android:background="@color/colorPrimary"
+                    android:textColor="@color/profileBannerColor"
                     android:textAllCaps="true"
                     android:textStyle="bold">
 
@@ -155,6 +149,7 @@
                     android:textSize="20dp"
                     android:gravity="center"
                     android:background="@color/colorPrimary"
+                    android:textColor="@color/profileBannerColor"
                     android:textAllCaps="true"
                     android:textStyle="bold">
 
@@ -221,18 +216,39 @@
                 </TextView>
 
                 <TextView
+                    android:id="@id/takenSubjects"
                     android:layout_width="match_parent"
-                    android:layout_height="15dp"
-                    android:layout_below="@id/motherName">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_below="@id/motherName"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:background="@color/colorPrimary"
+                    android:textColor="@color/profileBannerColor"
+                    android:textAllCaps="true"
+                    android:text="Subjects"
+                    android:textStyle="bold">
 
                 </TextView>
 
-
+                <ListView
+                    android:id="@id/subjectList"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_below="@id/takenSubjects"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:footerDividersEnabled="false"
+                    android:headerDividersEnabled="false"
+                    android:divider="@null"
+                    android:dividerHeight="0dp"
+                    android:layout_centerHorizontal="true">
+                </ListView>
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
     </ScrollView>
-
-
-
-
 </LinearLayout>
