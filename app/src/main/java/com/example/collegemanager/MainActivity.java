@@ -124,16 +124,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Bind to the Database Handler
-        Intent databaseService = new Intent(getApplicationContext(), DatabaseHandler.class);
-        bindService(databaseService, abstractConnection, BIND_AUTO_CREATE);
-
         Button loginButton = (Button)findViewById(R.id.loginButton);
         loginButton.setOnClickListener(new ClickListener());
 
         // Register Application Notification Channel
         Intent intent = new Intent(getApplicationContext(), NotificationChannelRegister.class);
         startService(intent);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        // Bind to the Database Handler
+        Intent databaseService = new Intent(getApplicationContext(), DatabaseHandler.class);
+        bindService(databaseService, abstractConnection, BIND_AUTO_CREATE);
     }
 
     @Override
