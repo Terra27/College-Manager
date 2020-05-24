@@ -16,7 +16,12 @@
     <string name="submit_button">Submitted Assignments</string>
 
     <!-- Pending Assignment Screen -->
+    <string name="pendingLogoDescription">Pending Assignment Logo</string>
     <string name="welcome_pending">The following assignments are pending, long press on one of the assignments to upload it\'s solution.</string>
+
+    <!-- Submitted Assignment Screen -->
+    <string name="submittedLogoDescription">Submitted Assignment Logo</string>
+    <string name="welcome_submitted">The following assignments have been submitted, press on one of the assignments to re-upload it\'s solution.</string>
 
     <!-- Student Profile Screen  -->
     <string name="student_img">Student Image</string>

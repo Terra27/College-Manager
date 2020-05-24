@@ -9,7 +9,7 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:src="@drawable/assignchoice"
-        android:contentDescription="Pending Assignment Logo"
+        android:contentDescription="@string/pendingLogoDescription"
         android:layout_centerHorizontal="true"/>
 
     <TextView
@@ -31,6 +31,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"/>
 
+    <!-- Alert for Network error -->
     <ImageView
         android:id="@+id/alert"
         android:layout_width="70dp"
@@ -48,6 +49,27 @@
         android:layout_below="@id/alert"
         android:paddingTop="10dp"
         android:text="Network Error: Check your network connection"
+        android:visibility="invisible"
+        android:layout_centerHorizontal="true"/>
+
+    <!-- Alert for empty list -->
+    <ImageView
+        android:id="@+id/info"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/nopending"
+        android:contentDescription="Alert"
+        android:visibility="invisible"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"/>
+
+    <TextView
+        android:id="@+id/emptyText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/info"
+        android:paddingTop="10dp"
+        android:text="You do not have any pending assignments!"
         android:visibility="invisible"
         android:layout_centerHorizontal="true"/>
 

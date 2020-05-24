@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+   <!-- Login Screen -->
    <item
        type="id"
-       name="usernameEdit"/>
-    <item
+       name="usernameEdit" />
+   <item
         type="id"
         name="passwordEdit"/>
-    <item
+   <item
         type="id"
         name="forgotButton" />
     <item
@@ -16,6 +18,7 @@
         type="id"
         name="collegeLogo"/>
 
+   <!-- Home Screen -->
     <item
         type="id"
         name="homeList"
@@ -62,7 +65,7 @@
           />
       <item
           type="id"
-          name="submitButton"
+          name="submittedButton"
           />
 
      <!-- Pending Assignment Window -->
@@ -80,38 +83,48 @@
          name="pendingList"
          />
 
-    <!-- Pending Assignment List -->
+    <!-- Submitted Assignment Window -->
+     <item
+        type="id"
+        name="submittedLogo"
+        />
      <item
          type="id"
-         name="itemPending"
-         />
+         name="submittedText"
+       />
+     <item
+         type="id"
+         name="submittedList"
+       />
 
+     <!-- Assignment List -->
      <item
          type="id"
-         name="subjectImage"
-         />
-     <item
-         type="id"
-         name="itemTitle"
-         />
-     <item
-         type="id"
-         name="itemProfessor"
-         />
+         name="assignmentCard"
+        />
 
-     <item
+      <item
          type="id"
-         name="itemDueDate"
-         />
-     <item
-         type="id"
-         name="downloadImage"
-         />
+         name="assignmentImage"
+       />
+       <item
+          type="id"
+          name="assignmentTitle"
+       />
+       <item
+          type="id"
+          name="assignmentProfessor"
+        />
+       <item
+          type="id"
+          name="assignmentDueDate"
+        />
+        <item
+          type="id"
+          name="downloadImage"
+        />
 
      <!--  Student Profile Window  -->
-
-
-     <!-- These ids are for student name and roll number and student image at the top  -->
 
      <item
          type="id"
