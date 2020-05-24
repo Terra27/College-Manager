@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:paddingTop="15dp">
+
+    <ImageView
+        android:id="@id/submittedLogo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/assignchoice"
+        android:contentDescription="@string/submittedLogoDescription"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@id/submittedText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/submittedLogo"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/welcome_submitted"
+        android:layout_centerHorizontal="true"/>
+
+    <ImageView
+        android:id="@+id/loader"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/loading"
+        android:contentDescription="Loader"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"/>
+
+    <!-- Alert for network errors -->
+    <ImageView
+        android:id="@+id/alert"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/alert"
+        android:contentDescription="Alert"
+        android:visibility="invisible"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"/>
+
+    <TextView
+        android:id="@+id/networkErrorText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/alert"
+        android:paddingTop="10dp"
+        android:text="Network Error: Check your network connection"
+        android:visibility="invisible"
+        android:layout_centerHorizontal="true"/>
+
+    <!-- Alert for empty list -->
+    <ImageView
+        android:id="@+id/info"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/nosubmit"
+        android:contentDescription="Alert"
+        android:visibility="invisible"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"/>
+
+    <TextView
+        android:id="@+id/emptyText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/info"
+        android:paddingTop="10dp"
+        android:text="You have not submitted any assignments yet"
+        android:visibility="invisible"
+        android:layout_centerHorizontal="true"/>
+
+    <ListView
+        android:id="@id/submittedList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/submittedText"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:footerDividersEnabled="false"
+        android:headerDividersEnabled="false"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:layout_centerHorizontal="true">
+    </ListView>
+</RelativeLayout>
