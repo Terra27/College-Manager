@@ -207,6 +207,16 @@
 
      <item
          type="id"
+         name="attendanceLogo"
+      />
+
+     <item
+         type="id"
+         name="attendanceText"
+      />
+
+     <item
+         type="id"
          name="attendanceList"
          />
 

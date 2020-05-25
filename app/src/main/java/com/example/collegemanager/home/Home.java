@@ -22,13 +22,6 @@ public class Home extends AppCompatActivity {
 
    private class ClickListener implements AdapterView.OnItemClickListener {
 
-       /*
-       private int viewID;
-        public ClickListener(int id ){
-           viewID = id;
-        }
-        */
-
         public void onItemClick(AdapterView parent, final View clickedItem, int position, long id) {
 
             int viewID = position + 1;
@@ -58,6 +51,11 @@ public class Home extends AppCompatActivity {
                 }
                 case 2: {
                     Intent attendance = new Intent(getApplicationContext(), Attendance.class);
+
+                    Intent data = getIntent();
+                    attendance.putExtra("id", data.getStringExtra("id") );
+                    attendance.putExtra("classID", data.getStringExtra("classID") );
+
                     startActivity(attendance);
                     break;
                 }

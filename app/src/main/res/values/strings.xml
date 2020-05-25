@@ -26,4 +26,8 @@
     <!-- Student Profile Screen  -->
     <string name="student_img">Student Image</string>
     <string name="colon">:</string>
+
+    <!-- Attendance Screen -->
+    <string name="attendanceLogoDescription">Attendance Logo</string>
+    <string name="attendanceText">Your attendance in all the subjects must be above 75%.</string>
 </resources>
