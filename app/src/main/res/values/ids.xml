@@ -245,7 +245,55 @@
          name="warningText"
          />
 
+   <!-- Notices Screen -->
+   <item
+    type="id"
+    name="noticeView"
+    />
 
+   <item
+      type="id"
+      name="noticesLogo"
+    />
 
+   <item
+      type="id"
+      name="noticesText"
+     />
 
+   <item
+       type="id"
+       name="departmentBannerText"
+       />
+
+   <item
+       type="id"
+       name="departmentNoticesList"
+       />
+
+   <item
+       type="id"
+       name="collegeBannerText"
+       />
+
+   <item
+       type="id"
+       name="collegeNoticesList"
+       />
+
+   <!-- Notices List -->
+   <item
+     type="id"
+     name="noticeDownload"
+      />
+
+    <item
+     type="id"
+     name="noticeTitleText"
+      />
+
+    <item
+     type="id"
+     name="noticeDate"
+      />
 </resources>

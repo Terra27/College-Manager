@@ -29,7 +29,7 @@
         android:contentDescription="Loader"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"/>
-    
+
     <!-- Alert for Network error -->
     <ImageView
         android:id="@+id/alert"

@@ -72,7 +72,7 @@ public class DownloadStarter extends IntentService {
 
             System.out.println(FILE_NAME + " "+ PROGRESS_MAX/1024);
 
-            notification = createDownloadNotification(R.drawable.notify, "Downloading File..", "Your Assignment is being downloaded.");
+            notification = createDownloadNotification(R.drawable.notify, "Downloading File..", "Your file is being downloaded.");
             startForeground(notificationID, notification);
 
             // The IntentService executes on a different thread from the

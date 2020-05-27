@@ -30,4 +30,9 @@
     <!-- Attendance Screen -->
     <string name="attendanceLogoDescription">Attendance Logo</string>
     <string name="attendanceText">Your attendance in all the subjects must be above 75%.</string>
+
+    <!-- Notices Screen -->
+    <string name="noticesLogoDescription">Notices Logo</string>
+    <string name="noticesText">Please check these notice boards regularly.</string>
+    <string name="noticeHint">Click on a notice to download it.</string>
 </resources>

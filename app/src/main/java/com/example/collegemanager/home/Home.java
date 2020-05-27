@@ -14,6 +14,7 @@ import com.example.collegemanager.GlobalKeys;
 import com.example.collegemanager.R;
 import com.example.collegemanager.assignment.Assignment;
 import com.example.collegemanager.attendance.Attendance;
+import com.example.collegemanager.notices.Notices;
 import com.example.collegemanager.profile.StudentDetails;
 
 import java.util.ArrayList;
@@ -26,7 +27,28 @@ public class Home extends AppCompatActivity {
 
             int viewID = position + 1;
             switch (viewID) {
-                case 4: {
+                case 1: { // Profile
+                    Intent profile = new Intent(getApplicationContext(), StudentDetails.class);
+
+                    Intent data = getIntent();
+                    for (int i = 0; i < GlobalKeys.dataKeys.length; i++) {
+                        profile.putExtra(GlobalKeys.dataKeys[i], data.getStringExtra(GlobalKeys.dataKeys[i]));
+                    }
+
+                    startActivity(profile);
+                    break;
+                }
+                case 2: { // Attendance
+                    Intent attendance = new Intent(getApplicationContext(), Attendance.class);
+
+                    Intent data = getIntent();
+                    attendance.putExtra("id", data.getStringExtra("id") );
+                    attendance.putExtra("classID", data.getStringExtra("classID") );
+
+                    startActivity(attendance);
+                    break;
+                }
+                case 4: { // Assignments
                     Intent assignment = new Intent(getApplicationContext(), Assignment.class);
 
                     // Take the data this activity has and pass it to the next
@@ -38,26 +60,10 @@ public class Home extends AppCompatActivity {
                     startActivity(assignment);
                     break;
                 }
-                case 1: {
-                    Intent profile = new Intent(getApplicationContext(), StudentDetails.class);
+                case 6: { // Notices
+                    Intent notices = new Intent(getApplicationContext(), Notices.class);
 
-                    Intent data = getIntent();
-                    for (int i = 0; i < GlobalKeys.dataKeys.length; i++) {
-                        profile.putExtra(GlobalKeys.dataKeys[i], data.getStringExtra(GlobalKeys.dataKeys[i]));
-                    }
-
-                    startActivity(profile);
-                    break;
-                }
-                case 2: {
-                    Intent attendance = new Intent(getApplicationContext(), Attendance.class);
-
-                    Intent data = getIntent();
-                    attendance.putExtra("id", data.getStringExtra("id") );
-                    attendance.putExtra("classID", data.getStringExtra("classID") );
-
-                    startActivity(attendance);
-                    break;
+                    startActivity(notices);
                 }
             }
         }

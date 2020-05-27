@@ -14,12 +14,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <receiver
             android:name=".UploadDownloadReceiver"
             android:enabled="true"
             android:exported="false">
             <intent-filter>
-                <action android:name="com.example.collegemanager.UPLOAD_COMPLETE"/>
+                <action android:name="com.example.collegemanager.UPLOAD_COMPLETE" />
                 <action android:name="com.example.collegemanager.DOWNLOAD_COMPLETE" />
             </intent-filter>
         </receiver>
@@ -27,7 +28,7 @@
         <service
             android:name=".DatabaseHandler"
             android:enabled="true"
-            android:exported="true" />
+            android:exported="false" />
 
         <activity
             android:name=".MainActivity"
@@ -41,6 +42,19 @@
         <activity
             android:name=".home.Home"
             android:theme="@style/CustomTheme" />
+
+        <activity
+            android:name=".profile.StudentDetails"
+            android:theme="@style/CustomTheme" />
+
+        <activity
+            android:name=".attendance.Attendance"
+            android:theme="@style/CustomTheme" />
+
+        <activity
+            android:name=".notices.Notices"
+            android:theme="@style/CustomTheme" />
+
         <activity
             android:name=".assignment.Assignment"
             android:theme="@style/CustomTheme" />
@@ -49,12 +63,6 @@
             android:theme="@style/CustomTheme" />
         <activity
             android:name=".assignment.submitted.Submitted"
-            android:theme="@style/CustomTheme" />
-        <activity
-            android:name=".profile.StudentDetails"
-            android:theme="@style/CustomTheme" />
-        <activity
-            android:name=".attendance.Attendance"
             android:theme="@style/CustomTheme" />
 
         <service
