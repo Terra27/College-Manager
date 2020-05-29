@@ -215,6 +215,17 @@
          name="warningText"
          />
 
+     <!--    Results Window   -->
+     <item
+         type="id"
+         name="resultGrid"
+         />
+
+     <item
+         type="id"
+         name="semester"
+         />
+
 
 
 
