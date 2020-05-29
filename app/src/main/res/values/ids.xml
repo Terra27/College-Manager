@@ -226,6 +226,84 @@
          name="semester"
          />
 
+     <!--   Show Result Window   -->
+
+     <item
+         type="id"
+         name="table1"
+         />
+     <item
+         type="id"
+         name="studName"
+         />
+     <item
+         type="id"
+         name="fatherNameR"
+         />
+     <item
+         type="id"
+         name="rollnoR"
+         />
+     <item
+         type="id"
+         name="statusR"
+         />
+     <item
+         type="id"
+         name="courseR"
+         />
+     <item
+         type="id"
+         name="resultSem"
+         />
+     <item
+         type="id"
+         name="showResultList"
+         />
+     <item
+         type="id"
+         name="carryOverTable"
+         />
+     <item
+         type="id"
+         name="carryPapers"
+         />
+     <item
+         type="id"
+         name="sgpaObt"
+         />
+     <item
+         type="id"
+         name="resultColon"
+         />
+     <item
+         type="id"
+         name="resultObt"
+         />
+
+     <!--  Show Result List  -->
+
+     <item
+         type="id"
+         name="subject"
+         />
+     <item
+         type="id"
+         name="externalMarksObt"
+         />
+     <item
+         type="id"
+         name="sessionalMarksObt"
+         />
+     <item
+         type="id"
+         name="gradeObt"
+         />
+     <item
+         type="id"
+         name="creditObt"
+         />
+
 
 
 

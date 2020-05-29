@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TableLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:id="@id/table1"
+        android:shrinkColumns="2"
+        android:layout_centerHorizontal="true">
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name">
+            </TextView>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text=" : ">
+
+            </TextView>
+
+            <TextView
+                android:id="@id/studName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ayush Sharma">
+
+            </TextView>
+
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Father's Name">
+            </TextView>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text=" : ">
+
+            </TextView>
+
+            <TextView
+                android:id="@id/fatherNameR"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mr.Vijay Kumar Sharma">
+
+            </TextView>
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Roll No.">
+            </TextView>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text=" : ">
+
+            </TextView>
+
+            <TextView
+                android:id="@id/rollnoR"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1605210015">
+
+            </TextView>
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Status">
+            </TextView>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text=" : "
+                android:textSize="18dp">
+
+            </TextView>
+
+            <TextView
+                android:id="@id/statusR"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Regular">
+
+            </TextView>
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Course">
+            </TextView>
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text=" : ">
+
+            </TextView>
+
+            <TextView
+                android:id="@id/courseR"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="B Tech Computer Science and Engineering">
+
+            </TextView>
+        </TableRow>
+
+        <TableRow
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@id/resultSem"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:text="Semester 7">
+
+            </TextView>
+
+        </TableRow>
+
+    </TableLayout>
+
+    <ListView
+        android:id="@id/showResultList"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_below="@id/table1"
+        android:layout_marginTop="10dp"
+        android:footerDividersEnabled="false"
+        android:headerDividersEnabled="false"
+        android:divider="@null"
+        android:dividerHeight="0dp">
+
+    </ListView>
+
+    <TableLayout
+        android:id="@id/carryOverTable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_below="@id/showResultList">
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Carry Over Papers/Grace in">
+            </TextView>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text=" : ">
+
+            </TextView>
+
+            <TextView
+                android:id="@id/carryPapers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="">
+
+            </TextView>
+
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SGPA">
+            </TextView>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text=" : ">
+
+            </TextView>
+
+            <TextView
+                android:id="@id/sgpaObt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="8.16">
+
+            </TextView>
+
+        </TableRow>
+
+
+    </TableLayout>
+
+    <TextView
+        android:layout_below="@id/carryOverTable"
+        android:layout_toLeftOf="@id/resultColon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Result : "
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold">
+    </TextView>
+
+    <TextView
+        android:id="@id/resultColon"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_below="@id/carryOverTable"
+        android:layout_centerHorizontal="true"
+        android:text=" : "
+        tools:ignore="NotSibling">
+
+    </TextView>
+
+    <TextView
+        android:id="@id/resultObt"
+        android:layout_below="@id/carryOverTable"
+        android:layout_toRightOf="@id/resultColon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CP(0)">
+
+    </TextView>
+
+
+</RelativeLayout>
+
