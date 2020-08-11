@@ -303,8 +303,28 @@
          type="id"
          name="creditObt"
          />
+    <item name="askQuestionProgressBar" type="id" />
+ <item name="askQuestionTitle" type="id" />
+ <item name="mapIcon" type="id" />
+ <item name="mapIconEmpty" type="id" />
+ <item name="askQuestionGuideline" type="id" />
+ <item name="askQuestionTextHelp" type="id" />
+ <item name="questionList" type="id" />
+ <item name="askQuestionFragment" type="id" />
+ <item name="askQuesionAddButton" type="id" />
+    <item name="AddFragmentTitle" type="id" />
+ <item name="AddFragmentNameText" type="id" />
+ <item name="AddFragmentProfessorText" type="id" />
+ <item name="AddFragmentCodeText" type="id" />
+ <item name="AddFragmentNameEdit" type="id" />
+ <item name="AddFragmentProfessorEdit" type="id" />
+ <item name="AddFragmentCodeEdit" type="id" />
+ <item name="FragmentAddButton" type="id" />
 
-
+ <--! Question card -->
+ <item name="questionTitle" type="id" />
+ <item name="dateOfQuestion" type="id" />
+ <item name="facultyAsked" type="id" />
 
 
 </resources>

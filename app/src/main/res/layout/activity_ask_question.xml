@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ProgressBar
+        android:id="@id/askQuestionProgressBar"
+        style="@style/Widget.AppCompat.ProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@id/mapIcon"
+        android:layout_width="55dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline5"
+        app:layout_constraintEnd_toStartOf="@+id/askQuestionTitle"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/warning" />
+
+    <TextView
+        android:id="@id/askQuestionTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="Ask A Question"
+        android:textColor="#797979"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/mapIcon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/mapIcon"
+        app:layout_constraintTop_toTopOf="@+id/mapIcon" />
+
+    <ImageView
+        android:id="@id/mapIconEmpty"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="15dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/askTextEmpty"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/warning_icon" />
+
+    <TextView
+        android:id="@id/askTextEmpty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="You have not added any subjects!"
+        android:textColor="#797979"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/askQuestionGuideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="671dp" />
+
+    <ListView
+        android:id="@id/questionList"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:footerDividersEnabled="false"
+        android:headerDividersEnabled="false"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/askQuestionGuideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline5">
+
+    </ListView>
+
+    <FrameLayout
+        android:id="@id/askQuestionFragment"
+        android:layout_width="300dp"
+        android:layout_height="247dp"
+        app:layout_constraintBottom_toTopOf="@id/askQuestionGuideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline5">
+
+    </FrameLayout>
+
+    <Button
+        android:id="@id/askQuesionAddButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="20dp"
+        android:text="+"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/askQuestionGuideline" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@id/askQuestionGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="60dp" />
+
+    <TextView
+        android:id="@id/askQuestionTextHelp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Click on a subject to view it's activities"
+        android:textColor="#797979"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/askQuesionAddButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/askQuestionGuideline" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

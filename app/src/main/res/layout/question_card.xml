@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@id/questionTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TITLE"
+        android:gravity="center"
+        android:textStyle="bold">
+    </TextView>
+
+    <TextView
+        android:id="@id/dateOfQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/questionTitle"
+        android:text="Date : "
+        android:gravity="center">
+    </TextView>
+
+    <TextView
+        android:id="@id/facultyAsked"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Faculty Name"
+        android:layout_below="@id/dateOfQuestion">
+
+    </TextView>
+
+</RelativeLayout>
