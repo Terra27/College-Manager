@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <GridView
+
+        android:id="@id/resultGrid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="40dp"
+        android:numColumns="2"
+        android:elevation="20dp"
+        android:verticalSpacing="40dp">
+
+    </GridView>
+
+
+
+</RelativeLayout>

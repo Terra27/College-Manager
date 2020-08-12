@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginLeft="5dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="3dp"
+    app:strokeWidth="1dp"
+    app:strokeColor="#3498DB">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp">
+
+        <TextView
+            android:id="@id/AddFragmentTitle"
+            android:layout_width="290dp"
+            android:layout_height="28dp"
+            android:background="#FFFFFF"
+            android:paddingStart="107dp"
+            android:paddingTop="6dp"
+            android:text="Create Question"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@id/AddFragmentNameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="15dp"
+            android:text="Title"
+            android:textColor="#797979"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/AddFragmentTitle" />
+
+        <TextView
+            android:id="@id/AddFragmentProfessorText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="24dp"
+            android:text="Faculty:"
+            android:textColor="#797979"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/AddFragmentNameText" />
+
+        <EditText
+            android:id="@id/AddFragmentCodeText"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="24dp"
+            android:textColor="#797979"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/AddFragmentProfessorText">
+
+        </EditText>
+
+        <EditText
+            android:id="@id/AddFragmentNameEdit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textColor="#797979"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/AddFragmentNameText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/AddFragmentNameText"
+            app:layout_constraintTop_toTopOf="@id/AddFragmentNameText" />
+
+        <Spinner
+            android:id="@id/AddFragmentProfessorEdit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textColor="@color/colorPrimary"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/AddFragmentProfessorText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/AddFragmentProfessorText"
+            app:layout_constraintTop_toTopOf="@id/AddFragmentProfessorText" />
+
+        <EditText
+            android:id="@id/AddFragmentCodeEdit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textColor="#797979"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/AddFragmentCodeText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/AddFragmentCodeText"
+            app:layout_constraintTop_toTopOf="@id/AddFragmentCodeText" />
+
+
+        <Button
+            android:id="@id/FragmentAddButton"
+            android:layout_width="114dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="34dp"
+            android:text="Add"
+            android:background="@color/colorPrimary"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/AddFragmentCodeText" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

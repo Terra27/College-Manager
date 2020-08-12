@@ -19,7 +19,7 @@ import com.example.collegemanager.assignment.Assignment;
 
 import java.util.ArrayList;
 
-public class CardAdapter extends ArrayAdapter<HomeOptions> {
+    public class CardAdapter extends ArrayAdapter<HomeOptions> {
 
     public CardAdapter(Context context, ArrayList<HomeOptions> homeOptions) {
         super(context, 0, homeOptions);

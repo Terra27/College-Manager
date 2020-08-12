@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:id="@id/subject"
+        android:layout_height="wrap_content"
+        android:layout_width="70dp"
+        android:layout_toLeftOf="@id/externalMarksObt"
+        android:text=" Subject Code "
+        android:gravity="center"
+        android:layout_centerHorizontal="true">
+
+    </TextView>
+
+    <TextView
+        android:id="@id/externalMarksObt"
+        android:layout_height="wrap_content"
+        android:layout_width="70dp"
+        android:layout_toLeftOf="@id/sessionalMarksObt"
+        android:text=" External Marks "
+        android:gravity="center">
+
+    </TextView>
+
+    <TextView
+        android:id="@id/sessionalMarksObt"
+        android:layout_alignParentTop="true"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_width="78dp"
+        android:text=" Sessional Marks "
+        android:gravity="center">
+
+    </TextView>
+
+    <TextView
+        android:id="@id/gradeObt"
+        android:layout_height="wrap_content"
+        android:layout_width="70dp"
+        android:layout_toRightOf="@id/sessionalMarksObt"
+        android:text=" Grade "
+        android:gravity="center">
+
+    </TextView>
+
+    <TextView
+        android:id="@id/creditObt"
+        android:layout_height="wrap_content"
+        android:layout_width="70dp"
+        android:layout_toRightOf="@id/gradeObt"
+        android:text=" Obt Credit "
+        android:gravity="center">
+
+    </TextView>
+
+
+</RelativeLayout>
