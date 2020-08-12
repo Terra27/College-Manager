@@ -56,9 +56,12 @@ public class UploadStarter extends IntentService {
 
     }
 
+    private Intent globalIntent;
     @Override
     protected void onHandleIntent(Intent data) {
         if (data != null) {
+
+            globalIntent = data;
 
             System.out.println("Upload service started.");
             notification = createUploadNotification(R.drawable.notify, "Uploading File..", "Your Assignment is being uploaded.");
@@ -111,7 +114,7 @@ public class UploadStarter extends IntentService {
 
 
                             PROGRESS_CURR = PROGRESS_CURR + bytesRead;
-                            if ( PROGRESS_CURR < PROGRESS_MAX ) {
+                            if ( PROGRESS_CURR <= PROGRESS_MAX ) {
                                 notificationBuilder.setProgress(PROGRESS_MAX, PROGRESS_CURR, false);
                                 startForeground(notificationID, notificationBuilder.build());
                             }
@@ -121,6 +124,14 @@ public class UploadStarter extends IntentService {
 
                         showToast("Your assignment was successfully uploaded.");
                         bufferedFileInput.close();
+
+                        // Send a broadcast
+                        Intent uploadBroadcast = new Intent();
+                        uploadBroadcast.setAction("com.example.collegemanager.UPLOAD_COMPLETE");
+                        uploadBroadcast.putExtra("studentid", globalIntent.getIntExtra("studentid", 0) );
+                        uploadBroadcast.putExtra("assignmentid", globalIntent.getIntExtra("assignmentid", 0));
+
+                        sendBroadcast(uploadBroadcast);
 
                         if ( clientSocket != null ) {
                             clientSocket.close();

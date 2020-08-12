@@ -5,21 +5,21 @@
     android:paddingTop="15dp">
 
     <ImageView
-        android:id="@id/pendingLogo"
+        android:id="@id/submittedLogo"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:src="@drawable/assignchoice"
-        android:contentDescription="@string/pendingLogoDescription"
+        android:contentDescription="@string/submittedLogoDescription"
         android:layout_centerHorizontal="true"/>
 
     <TextView
-        android:id="@id/pendingText"
+        android:id="@id/submittedText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/pendingLogo"
+        android:layout_below="@id/submittedLogo"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:text="@string/welcome_pending"
+        android:text="@string/welcome_submitted"
         android:layout_centerHorizontal="true"/>
 
     <ImageView
@@ -31,7 +31,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"/>
 
-    <!-- Alert for Network error -->
+    <!-- Alert for network errors -->
     <ImageView
         android:id="@+id/alert"
         android:layout_width="70dp"
@@ -57,7 +57,7 @@
         android:id="@+id/info"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:src="@drawable/nopending"
+        android:src="@drawable/nosubmit"
         android:contentDescription="Alert"
         android:visibility="invisible"
         android:layout_centerHorizontal="true"
@@ -69,15 +69,15 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/info"
         android:paddingTop="10dp"
-        android:text="You do not have any pending assignments!"
+        android:text="You have not submitted any assignments yet"
         android:visibility="invisible"
         android:layout_centerHorizontal="true"/>
 
     <ListView
-        android:id="@id/pendingList"
+        android:id="@id/submittedList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/pendingText"
+        android:layout_below="@id/submittedText"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
         android:paddingTop="16dp"

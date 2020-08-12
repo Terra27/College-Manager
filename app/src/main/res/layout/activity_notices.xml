@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <ImageView
+        android:id="@id/noticesLogo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/notice"
+        android:contentDescription="@string/noticesLogoDescription"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@id/noticesText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/noticesLogo"
+        android:layout_marginTop="5dp"
+        android:text="@string/noticesText"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@id/departmentBannerText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/noticesText"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:textSize="20dp"
+        android:text="department notices"
+        android:gravity="center"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/profileBannerColor"
+        android:textAllCaps="true"
+        android:textStyle="bold"/>
+
+    <ListView
+        android:id="@id/departmentNoticesList"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/departmentBannerText"
+        android:footerDividersEnabled="false"
+        android:headerDividersEnabled="false"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:layout_centerHorizontal="true">
+    </ListView>
+
+    <TextView
+        android:id="@id/collegeBannerText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/departmentNoticesList"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:textSize="20dp"
+        android:text="college notices"
+        android:gravity="center"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/profileBannerColor"
+        android:textAllCaps="true"
+        android:textStyle="bold"/>
+
+    <ListView
+        android:id="@id/collegeNoticesList"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/collegeBannerText"
+        android:footerDividersEnabled="false"
+        android:headerDividersEnabled="false"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:layout_centerHorizontal="true">
+    </ListView>
+
+    <ImageView
+        android:id="@+id/informer"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_below="@id/collegeNoticesList"
+        android:layout_marginTop="13dp"
+        android:layout_marginLeft="5dp"
+        android:src="@drawable/notice"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/collegeNoticesList"
+        android:layout_toRightOf="@id/informer"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:text="@string/noticeHint"/>
+
+    <!-- loader -->
+    <ImageView
+        android:id="@+id/loader"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/loading"
+        android:contentDescription="Loader"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/departmentBannerText"
+        android:layout_marginTop="45dp"/>
+
+    <!-- Alert for Network error -->
+    <ImageView
+        android:id="@+id/alert"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/alert"
+        android:contentDescription="Alert"
+        android:visibility="invisible"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/departmentBannerText"
+        android:layout_marginTop="45dp"/>
+
+    <TextView
+        android:id="@+id/networkErrorText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/alert"
+        android:paddingTop="10dp"
+        android:text="Network Error: Check your network connection"
+        android:visibility="invisible"
+        android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>

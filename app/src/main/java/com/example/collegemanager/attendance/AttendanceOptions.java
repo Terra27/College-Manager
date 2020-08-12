@@ -6,7 +6,7 @@ public class AttendanceOptions {
     int totalClass;
     int present;
 
-    public AttendanceOptions(String subjectCode , int totalClassHeld , int attendedClass){
+    public AttendanceOptions(String subjectCode , int attendedClass, int totalClassHeld){
 
         subCode = subjectCode;
         totalClass = totalClassHeld;

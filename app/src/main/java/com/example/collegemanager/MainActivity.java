@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
                     Thread transactionThread = new Thread() {
                         public void run() {
-                            currResult = boundService.selectQuery("SELECT studentid, A.classid, name, rollno, admissionyear, enrollmentno, dob, gender, fathername, mothername, year, course, branch, semester FROM students AS A, classes AS T WHERE A.username='"+ username +"' AND A.password='"+ password +"' AND A.classid = T.classid");
+                            currResult = boundService.executeQuery("SELECT studentid, A.classid, name, rollno, admissionyear, enrollmentno, dob, gender, fathername, mothername, year, course, branch, semester FROM students AS A, classes AS T WHERE A.username='"+ username +"' AND A.password='"+ password +"' AND A.classid = T.classid", 0);
                         }
                     };
                     transactionThread.start();
@@ -95,8 +95,9 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = new Intent(getApplicationContext(), Home.class);
 
                         // Pack this data into the intent and pass to the next activity so that we don't have to fetch it multiple times
-                        for ( int i= 0; i < GlobalKeys.dataKeys.length; i++) {
+                        for ( int i = 0; i < GlobalKeys.dataKeys.length; i++) {
                             if ( i == 4 ) {
+                                // outputs 2016-01-01 for some reason
                                 intent.putExtra(GlobalKeys.dataKeys[i], currResult.get(0).get(i).substring(0, currResult.get(0).get(i).indexOf('-')));
                                 continue;
                             }
@@ -119,25 +120,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    //private static final int PICK_FILE = 27;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        /*
-        //Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-        Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("text/plain");
-
-        startActivityForResult(intent, PICK_FILE);
-        */
-
-        // Bind to the Database Handler
-        Intent databaseService = new Intent(getApplicationContext(), DatabaseHandler.class);
-        bindService(databaseService, abstractConnection, BIND_AUTO_CREATE);
 
         Button loginButton = (Button)findViewById(R.id.loginButton);
         loginButton.setOnClickListener(new ClickListener());
@@ -145,6 +131,15 @@ public class MainActivity extends AppCompatActivity {
         // Register Application Notification Channel
         Intent intent = new Intent(getApplicationContext(), NotificationChannelRegister.class);
         startService(intent);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        // Bind to the Database Handler
+        Intent databaseService = new Intent(getApplicationContext(), DatabaseHandler.class);
+        bindService(databaseService, abstractConnection, BIND_AUTO_CREATE);
     }
 
     @Override

@@ -10,6 +10,7 @@ import android.widget.Button;
 import com.example.collegemanager.assignment.pending.Pending;
 
 import com.example.collegemanager.R;
+import com.example.collegemanager.assignment.submitted.Submitted;
 
 public class Assignment extends AppCompatActivity {
 
@@ -22,6 +23,19 @@ public class Assignment extends AppCompatActivity {
         pendingButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View clickedButton) {
                 Intent intent = new Intent(getApplicationContext(), Pending.class);
+
+                // Pass on my ID to fetch my pending assignments
+                Intent data = getIntent();
+                intent.putExtra("id", data.getStringExtra("id"));
+
+                startActivity(intent);
+            }
+        });
+
+        Button submittedButton = (Button)findViewById(R.id.submittedButton);
+        submittedButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View clickedButton) {
+                Intent intent = new Intent(getApplicationContext(), Submitted.class);
 
                 // Pass on my ID to fetch my pending assignments
                 Intent data = getIntent();

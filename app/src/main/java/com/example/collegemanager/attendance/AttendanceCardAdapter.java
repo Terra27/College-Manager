@@ -1,8 +1,10 @@
 package com.example.collegemanager.attendance;
 
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import androidx.annotation.RequiresApi;
 
 import com.example.collegemanager.R;
 
@@ -38,13 +42,14 @@ public class AttendanceCardAdapter extends ArrayAdapter<AttendanceOptions> {
         TextView subCode = (TextView)convertView.findViewById(R.id.subCode);
         subCode.setText(info.subCode);
 
+        int percent = (int)(((float)info.present/(float)info.totalClass)*100.00);
+
         //TextView for Attendance : Present/Total
         TextView attendance = (TextView)convertView.findViewById(R.id.attendance);
-        attendance.setText("Attendance : "+ info.present + "/" + info.totalClass);
+        attendance.setText("Attendance : "+ info.present + "/" + info.totalClass + " (" + percent +"%)");
 
         //Progress Bar to show the percentage
         ProgressBar progress = (ProgressBar)convertView.findViewById(R.id.progressBar);
-        int percent = (int)(((float)info.present/(float)info.totalClass)*100.00);
         progress.setProgress(percent);
 
         //Imageview for showing warning sign if attendance is below 75%
@@ -56,7 +61,9 @@ public class AttendanceCardAdapter extends ArrayAdapter<AttendanceOptions> {
 
         //Hide the warning if attendance is above 75%
         if(progress.getProgress()>75){
-            progress.setProgressTintList(ColorStateList.valueOf(Color.rgb(4,142,6)));
+            if ( Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP )
+                progress.setProgressTintList(ColorStateList.valueOf(Color.rgb(4,142,6)));
+
             warningSign.setVisibility(View.INVISIBLE);
             warningText.setVisibility(View.INVISIBLE);
         }
